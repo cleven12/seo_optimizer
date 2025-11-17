@@ -15,8 +15,8 @@ A Python CLI tool that analyzes web content for SEO optimization based on focus 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/seo-analyzer.git
-cd seo-analyzer
+git clone https://github.com/cleven12/seo_optimizer.git
+cd seo_optimizer
 
 # Create virtual environment
 python -m venv venv
