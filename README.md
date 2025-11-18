@@ -1,6 +1,16 @@
 # SEO Analyzer
 
-A Python CLI tool that analyzes web content for SEO optimization based on focus keywords. Get actionable insights to improve your search rankings.
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![GitHub stars](https://img.shields.io/github/stars/cleven12/seo_optimizer?style=social)](https://github.com/cleven12/seo_optimizer)
+
+  **A powerful Python CLI tool that analyzes web content for SEO optimization based on focus keywords. Get actionable insights to improve your search rankings.**
+
+> **For technical details and architecture**: See [NOTES.md](NOTES.md) <br/>**Full design docs**: [DESIGN_ARCHITECTURE_DOCS.md](public/DESIGN_ARCHITECTURE_DOCS.md)
+
+---
 
 ## Features
 
@@ -11,7 +21,9 @@ A Python CLI tool that analyzes web content for SEO optimization based on focus 
 -  **JSON Export**: Optional report export for automation
 -  **Fast Analysis**: Get results in seconds
 
-## Installation
+## Quick Start
+
+### Installation
 
 ```bash
 # Clone the repository
@@ -29,10 +41,10 @@ pip install -r requirements.txt
 python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
 ```
 
-## Quick Start
+### Basic Usage
 
 ```bash
-# Basic usage
+# Analyze a webpage
 python main.py --url "https://example.com" --keywords "python tutorial,learn python"
 
 # With JSON export
@@ -47,21 +59,26 @@ python main.py --url "https://example.com" --keywords "seo tips" --verbose
 ## Usage
 
 ```bash
-python main.py -u URL -k KEYWORDS [OPTIONS]
+usage: main.py [-h] -u URL -k KEYWORDS [-o OUTPUT] [-v]
 
-Required Arguments:
-  -u, --url         Target URL to analyze
-  -k, --keywords    Comma-separated focus keywords
+SEO Analyzer - Analyze web content for SEO optimization
 
-Optional Arguments:
-  -o, --output      JSON output file path
-  -v, --verbose     Show detailed analysis
-  -h, --help        Show help message
+options:
+  -h, --help            show this help message and exit
+  -u, --url URL         Target URL to analyze
+  -k, --keywords KEYWORDS
+                        Comma-separated focus keywords
+  -o, --output OUTPUT   JSON output file path (optional)
+  -v, --verbose         Show detailed analysis
 ```
 
 ## What It Analyzes
 
-###  Keyword Performance
+<table>
+<tr>
+<td width="50%">
+
+### Keyword Performance
 - Title tag optimization
 - Meta description optimization
 - Heading tags (H1-H6)
@@ -69,58 +86,65 @@ Optional Arguments:
 - First 100 words placement
 - Content distribution
 
-###  Technical SEO
+### Technical SEO
 - Title length (50-60 chars)
 - Meta description length (150-160 chars)
 - Canonical tags
 - Open Graph tags
 - HTTP status
 
-###  Content Quality
+</td>
+<td width="50%">
+
+### Content Quality
 - Word count
 - Readability
 - Content structure
 - Keyword distribution
 
-###  Page Structure
+### Page Structure
 - Heading hierarchy
 - Image alt tags
 - Paragraph structure
 - List usage
 
-###  Link Analysis
+### Link Analysis
 - Internal links count
 - External links count
 - Anchor text optimization
 
+</td>
+</tr>
+</table>
+
 ## Sample Output
 
 ```
-  Analyzing: https://example.com
+🔍 Analyzing: https://example.com
 Focus Keywords: "python tutorial", "learn python"
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  SEO ANALYSIS REPORT
+📊 SEO ANALYSIS REPORT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  OVERALL SEO SCORE: 72/100
+🎯 OVERALL SEO SCORE: 72/100
 
 ┌────────────────────────────────────────────────────────┐
-│   Keyword Cluster Performance: 75/100                 │
+│ 🎯 Keyword Cluster Performance: 75/100                 │
 └────────────────────────────────────────────────────────┘
 
- "python tutorial" - 85/100
+✅ "python tutorial" - 85/100
    ├─ Title: ✓ Found
    ├─ H1: ✓ Found
    └─ Density: 1.2% (optimal)
 
-  "learn python" - 65/100
+⚠️  "learn python" - 65/100
    ├─ Title: ✗ Not found
    └─ Density: 0.8% (low)
-    Add to title or first paragraph
+   💡 Add to title or first paragraph
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  TOP RECOMMENDATIONS
+🎯 TOP RECOMMENDATIONS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 1. 🔴 Add "learn python" to title tag
@@ -128,56 +152,9 @@ Focus Keywords: "python tutorial", "learn python"
 3. 🟢 Extend meta description to 150-160 characters
 ```
 
-## JSON Output Format
-
-```json
-{
-  "url": "https://example.com",
-  "overall_score": 72,
-  "keyword_analysis": {
-    "cluster_score": 75,
-    "individual_scores": [...]
-  },
-  "technical_seo": {...},
-  "content_analysis": {...},
-  "recommendations": [...]
-}
-```
-
-## Requirements
-
-- Python 3.8+
-- requests
-- beautifulsoup4
-- nltk
-- rich
-- lxml
-
-## Project Structure
-
-```
-seo_analyzer/
-├── main.py                 # Entry point
-├── config.py               # Configuration
-├── requirements.txt        # Dependencies
-├── core/                   # Core functionality
-│   ├── orchestrator.py
-│   ├── fetcher.py
-│   ├── keyword_processor.py
-│   └── scoring.py
-├── analyzers/              # Analysis modules
-│   ├── technical_seo.py
-│   ├── content_analyzer.py
-│   ├── structure_analyzer.py
-│   └── link_analyzer.py
-└── output/                 # Output formatters
-    ├── cli_renderer.py
-    └── json_exporter.py
-```
-
 ## Configuration
 
-Edit `config.py` to customize:
+Customize analysis by editing `src/config.py`:
 
 - Optimal keyword density range
 - Title/meta length preferences
@@ -194,7 +171,7 @@ Edit `config.py` to customize:
 5. **Generates** actionable recommendations
 6. **Outputs** colored CLI report and optional JSON
 
-## Keyword Matching
+### Keyword Matching
 
 The tool uses Google-like keyword matching:
 
@@ -204,11 +181,22 @@ The tool uses Google-like keyword matching:
 - Partial matching
 - Variations detection
 
+>  **Deep dive**: See [NOTES.md](NOTES.md) for detailed architecture and technical implementation
+
+## Requirements
+
+- Python 3.8+
+- requests
+- beautifulsoup4
+- nltk
+- rich
+- lxml
+
 ## Limitations
 
 - Works with HTML/server-rendered sites only
 - Does not render JavaScript (React, Vue, etc.)
-- Requires internet connection
+- Requires internet connection for website which hosted online
 - Does not check page speed metrics
 
 ## Roadmap
@@ -225,17 +213,27 @@ The tool uses Google-like keyword matching:
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
 ## License
 
 MIT License - see [LICENSE](LICENSE) file for details
 
 ## Support
 
-Found a bug or have a feature request? Open an issue on GitHub.
+- 🐛 **Found a bug?** [Open an issue](https://github.com/cleven12/seo_optimizer/issues)
+- 💡 **Have a feature request?** [Start a discussion](https://github.com/cleven12/seo_optimizer/discussions)
+- ⭐ **Like this project?** Give it a star!
 
 ## Author
 
-- Cleven - [cleven12](https://github.com/cleven12)
+**Cleven**
+- GitHub: [@cleven12](https://github.com/cleven12)
+- X: [@cleven02](https://x.com/)
 
 ## Acknowledgments
 
@@ -245,4 +243,10 @@ Found a bug or have a feature request? Open an issue on GitHub.
 
 ---
 
-⭐ If you find this tool useful, please consider giving it a star on GitHub!
+<div align="center">
+
+⭐ **If you find this tool useful, please consider giving it a star!** ⭐
+
+[Report Bug](https://github.com/cleven12/seo_optimizer/issues) · [Request Feature](https://github.com/cleven12/seo_optimizer/issues) · [Documentation](NOTES.md)
+
+</div>
