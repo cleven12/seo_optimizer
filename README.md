@@ -233,7 +233,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 **Cleven**
 - GitHub: [@cleven12](https://github.com/cleven12)
-- X: [@cleven02](https://x.com/)
+- X: [@cleven02](https://x.com/cleven02)
 
 ## Acknowledgments
 
