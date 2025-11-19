@@ -49,6 +49,11 @@ Each analyzer inherits from `BaseAnalyzer` and implements specific SEO checks:
 - **ContentAnalyzer**: Keyword density, placement, distribution, word count
 - **StructureAnalyzer**: Heading hierarchy, H1 usage, image alt tags
 - **LinkAnalyzer**: Internal/external link counts and quality
+- **AIAnalyzer** (Optional): AI-powered SEO recommendations using Claude Anthropic
+  - Generates intelligent SEO recommendations based on current scores
+  - Creates optimized title tags (50-60 characters)
+  - Generates optimized meta descriptions (150-160 characters)
+  - Analyzes content quality (readability, engagement, keyword stuffing risk, content value)
 
 **Design Decision**: Abstract base class pattern allows easy addition of new analysis modules without modifying the orchestrator. Each analyzer is independent and testable.
 
@@ -72,7 +77,9 @@ Content Fetcher (HTML → Structured WebContent)
     ↓
 Keyword Processor (Keywords → Variations with stemming)
     ↓
-Parallel Analysis Modules (4 analyzers process independently)
+Parallel Analysis Modules (4-5 analyzers process independently)
+    ↓
+[Optional] AI Analyzer (if --ai flag enabled)
     ↓
 Scoring Engine (Weighted aggregation)
     ↓
@@ -122,12 +129,19 @@ Output (CLI display and/or JSON export)
    - Purpose: Terminal formatting and output
    - Features Used: Colored text, tables, panels, progress indicators, box styles
 
-### No External Services
-The application operates entirely locally with no external API dependencies:
-- No database connections
-- No third-party SEO APIs
-- No authentication services
-- All processing happens in-memory
+6. **anthropic** (>=0.73.0) - *Optional for AI features*
+   - Purpose: Claude AI integration for intelligent SEO recommendations
+   - Model: claude-sonnet-4-20250514 (latest as of August 2025)
+   - Features Used: AI-powered content optimization, meta description generation, title optimization
+   - Requires: ANTHROPIC_API_KEY environment variable
+
+### External Services (Optional)
+- **Claude Anthropic API**: Used when `--ai` flag is enabled
+  - Provides AI-powered SEO recommendations
+  - Generates optimized title tags and meta descriptions
+  - Analyzes content quality with readability and engagement metrics
+  - Requires API key (set via ANTHROPIC_API_KEY environment variable)
+- Base SEO analysis operates entirely locally with no API dependencies
 
 ### Development Dependencies
 - Testing framework would require pytest (not currently included in requirements.txt)
