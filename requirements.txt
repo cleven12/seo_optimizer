@@ -7,3 +7,5 @@ beautifulsoup4
 nltk
 requests
 rich
+openai
+anthropic
