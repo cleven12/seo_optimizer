@@ -17,9 +17,9 @@ def render_report(report: AnalysisReport, verbose: bool = False):
     ))
     console.print()
     
-    console.print("━" * 120, style="blue", justify="full")
+    console.print("━" * 60, style="blue")
     console.print("[bold blue]📊 SEO ANALYSIS REPORT[/bold blue]", justify="center")
-    console.print("━" * 120, style="blue", justify="full",)
+    console.print("━" * 60, style="blue")
     console.print()
     
     score_color = get_score_color(report.overall_score)
@@ -52,7 +52,7 @@ def render_report(report: AnalysisReport, verbose: bool = False):
         
         console.print()
     
-    console.print("━" * 120, style="blue")
+    console.print("━" * 60, style="blue")
     console.print()
     
     console.print(f"{get_score_icon(report.technical_seo.score)} [bold]Technical SEO: {report.technical_seo.score}/100[/bold]")
@@ -82,10 +82,56 @@ def render_report(report: AnalysisReport, verbose: bool = False):
         console.print(f"   └─ External Links: {external}")
     console.print()
     
+    if report.ai_analysis:
+        if report.ai_analysis.status == 'failed':
+            console.print("━" * 60, style="blue")
+            console.print("[bold yellow]🤖 AI-POWERED SEO INSIGHTS[/bold yellow]")
+            console.print("━" * 60, style="blue")
+            console.print()
+            error_msg = report.ai_analysis.details.get('error', 'Unknown error')
+            console.print(f"[yellow]⚠️  AI features unavailable: {error_msg}[/yellow]")
+            if 'ANTHROPIC_API_KEY not configured' in error_msg:
+                console.print("[dim]Add ANTHROPIC_API_KEY environment variable to enable AI features[/dim]")
+            console.print()
+        elif report.ai_analysis.status == 'passed':
+            console.print("━" * 60, style="blue")
+            console.print("[bold magenta]🤖 AI-POWERED SEO INSIGHTS[/bold magenta]")
+            console.print("━" * 60, style="blue")
+            console.print()
+            
+            ai_details = report.ai_analysis.details
+            
+            if 'optimized_title' in ai_details and ai_details['optimized_title']:
+                console.print("[bold]📝 AI-Optimized Title:[/bold]")
+                console.print(f"   {ai_details['optimized_title']}")
+                console.print()
+            
+            if 'optimized_meta_description' in ai_details and ai_details['optimized_meta_description']:
+                console.print("[bold]📄 AI-Optimized Meta Description:[/bold]")
+                console.print(f"   {ai_details['optimized_meta_description']}")
+                console.print()
+            
+            if 'content_quality_analysis' in ai_details and ai_details['content_quality_analysis']:
+                quality = ai_details['content_quality_analysis']
+                console.print("[bold]📊 Content Quality Analysis:[/bold]")
+                if 'readability' in quality:
+                    console.print(f"   ├─ Readability: {quality['readability']}/10")
+                if 'engagement' in quality:
+                    console.print(f"   ├─ Engagement: {quality['engagement']}/10")
+                if 'content_value' in quality:
+                    console.print(f"   └─ Content Value: {quality['content_value']}/10")
+                console.print()
+            
+            if 'ai_recommendations' in ai_details and ai_details['ai_recommendations']:
+                console.print("[bold magenta]💡 AI Recommendations:[/bold magenta]")
+                for i, rec in enumerate(ai_details['ai_recommendations'], 1):
+                    console.print(f"   {i}. {rec}")
+                console.print()
+    
     if report.top_recommendations:
-        console.print("━" * 120, style="blue")
+        console.print("━" * 60, style="blue")
         console.print("[bold blue]🎯 TOP RECOMMENDATIONS[/bold blue]")
-        console.print("━" * 120, style="blue")
+        console.print("━" * 60, style="blue")
         console.print()
         
         for i, rec in enumerate(report.top_recommendations, 1):
@@ -93,7 +139,7 @@ def render_report(report: AnalysisReport, verbose: bool = False):
         
         console.print()
     
-    console.print("━" * 120, style="blue")
+    console.print("━" * 60, style="blue")
     console.print()
 
 def get_score_color(score: int) -> str:
