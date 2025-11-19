@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Dict
+from typing import List, Dict, Optional
 from datetime import datetime
 from src.core.fetcher import fetch_content, WebContent
 from src.core.keyword_processor import process_keywords, KeywordVariation
@@ -7,6 +7,7 @@ from src.analyzers.technical_seo import TechnicalSEOAnalyzer
 from src.analyzers.content_analyzer import ContentAnalyzer, ClusterScore
 from src.analyzers.structure_analyzer import StructureAnalyzer
 from src.analyzers.link_analyzer import LinkAnalyzer
+from src.analyzers.ai_analyzer import AIAnalyzer
 from src.core.scoring import calculate_overall_score, ModuleResult
 
 @dataclass
@@ -20,8 +21,9 @@ class AnalysisReport:
     structure_analysis: ModuleResult
     link_analysis: ModuleResult
     top_recommendations: List[str]
+    ai_analysis: Optional[ModuleResult] = None
 
-def run_analysis(url: str, keywords: List[str], verbose: bool = False) -> AnalysisReport:
+def run_analysis(url: str, keywords: List[str], verbose: bool = False, use_ai: bool = False) -> AnalysisReport:
     content = fetch_content(url)
     
     keyword_variations = process_keywords(keywords)
@@ -47,6 +49,17 @@ def run_analysis(url: str, keywords: List[str], verbose: bool = False) -> Analys
         structure_score=structure_result.score,
         link_score=link_result.score
     )
+    
+    ai_result = None
+    if use_ai:
+        current_scores = {
+            'technical': technical_result.score,
+            'content': content_result.score,
+            'structure': structure_result.score,
+            'links': link_result.score
+        }
+        ai_analyzer = AIAnalyzer(content, keyword_variations, current_scores)
+        ai_result = ai_analyzer.analyze()
     
     module_recommendations = []
     
@@ -86,7 +99,8 @@ def run_analysis(url: str, keywords: List[str], verbose: bool = False) -> Analys
         content_analysis=content_result,
         structure_analysis=structure_result,
         link_analysis=link_result,
-        top_recommendations=top_recommendations
+        top_recommendations=top_recommendations,
+        ai_analysis=ai_result
     )
     
     return report
