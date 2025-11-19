@@ -38,6 +38,12 @@ def app():
         help='Show detailed analysis'
     )
     
+    parser.add_argument(
+        '--ai',
+        action='store_true',
+        help='Enable AI-powered SEO recommendations using Claude Anthropic'
+    )
+    
     args = parser.parse_args()
     
     if not is_valid_url(args.url):
@@ -55,7 +61,7 @@ def app():
         ensure_nltk_data()
         
         console.print(f"[cyan]Fetching content from {args.url}...[/cyan]")
-        report = run_analysis(args.url, keywords, args.verbose)
+        report = run_analysis(args.url, keywords, args.verbose, args.ai)
         
         render_report(report, args.verbose)
         
@@ -67,3 +73,5 @@ def app():
         console.print(f"[red]Error: {str(e)}[/red]")
         sys.exit(1)
 
+if __name__ == '__main__':
+    app()
