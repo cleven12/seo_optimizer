@@ -122,6 +122,41 @@ def render_report(report: AnalysisReport, verbose: bool = False):
                     console.print(f"   └─ Content Value: {quality['content_value']}/10")
                 console.print()
             
+            if 'grammar_analysis' in ai_details and ai_details['grammar_analysis']:
+                grammar = ai_details['grammar_analysis']
+                if 'error' not in grammar:
+                    console.print("[bold green]✍️  Grammar & Readability (SEO-Safe):[/bold green]")
+                    if 'grammar_score' in grammar:
+                        score_color = get_score_color(grammar['grammar_score'] * 10)
+                        console.print(f"   ├─ Grammar Score: [{score_color}]{grammar['grammar_score']}/10[/{score_color}]")
+                    if 'issues_found' in grammar:
+                        console.print(f"   ├─ Issues Found: {grammar['issues_found']}")
+                    if 'seo_preserved' in grammar:
+                        console.print(f"   └─ SEO Keywords Preserved: {format_bool(grammar['seo_preserved'])}")
+                    console.print()
+                    
+                    if 'title_improvement' in grammar and grammar['title_improvement']:
+                        console.print("[dim]   Improved Title (Keywords Preserved):[/dim]")
+                        console.print(f"   [green]{grammar['title_improvement']}[/green]")
+                        console.print()
+                    
+                    if 'meta_improvement' in grammar and grammar['meta_improvement']:
+                        console.print("[dim]   Improved Meta Description (Keywords Preserved):[/dim]")
+                        console.print(f"   [green]{grammar['meta_improvement']}[/green]")
+                        console.print()
+                    
+                    if 'grammar_suggestions' in grammar and grammar['grammar_suggestions']:
+                        console.print("[bold]   Grammar Fixes:[/bold]")
+                        for i, suggestion in enumerate(grammar['grammar_suggestions'][:3], 1):
+                            console.print(f"   • {suggestion}")
+                        console.print()
+                    
+                    if 'readability_tips' in grammar and grammar['readability_tips']:
+                        console.print("[bold]   Readability Tips:[/bold]")
+                        for tip in grammar['readability_tips'][:2]:
+                            console.print(f"   • {tip}")
+                        console.print()
+            
             if 'ai_recommendations' in ai_details and ai_details['ai_recommendations']:
                 console.print("[bold magenta]💡 AI Recommendations:[/bold magenta]")
                 for i, rec in enumerate(ai_details['ai_recommendations'], 1):
