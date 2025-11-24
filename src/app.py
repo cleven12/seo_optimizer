@@ -41,7 +41,7 @@ def app():
     parser.add_argument(
         '--ai',
         action='store_true',
-        help='Enable AI-powered SEO recommendations using Claude Anthropic'
+        help='Enable AI-powered SEO recommendations (uses Gemini or OpenAI)'
     )
     
     args = parser.parse_args()
