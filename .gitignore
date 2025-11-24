@@ -1,8 +1,8 @@
 __pycache__
-_pycache__/
 .idea/
 *.pyc
 venv/
 *.pyc
 .vscode/
 .env
+./src/utils/__pycache__/

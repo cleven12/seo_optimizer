@@ -1,148 +1,150 @@
 # SEO Analyzer Tool
 
 ## Overview
+A powerful Python CLI tool that analyzes web content for SEO optimization based on user-provided focus keywords. The tool provides comprehensive SEO analysis including keyword performance, technical SEO, content quality, structure, and links.
 
-A Python CLI application that analyzes web pages for SEO optimization based on user-provided focus keywords. The tool fetches web content, performs comprehensive SEO analysis across multiple dimensions (technical, content, structure, links), and provides actionable recommendations with scoring metrics. It uses intelligent keyword matching with stemming and semantic analysis to provide Google-like keyword detection.
+## Recent Changes
+- **2025-11-24**: Initial setup on Local Dev Env
+- **2025-11-24**: Integrated AI-powered recommendations using Google Gemini (free) and OpenAI
+- **2025-11-24**: Updated to support both Gemini and OpenAI for flexibility
+- **2025-11-24**: Configured for keyword-focused SEO analysis
+
+## Project Architecture
+
+### Technology Stack
+- **Language**: Python 3.11
+- **HTTP Client**: requests
+- **HTML Parser**: BeautifulSoup4 + lxml
+- **NLP**: NLTK (tokenization, stemming, stopwords)
+- **CLI Framework**: Rich (colored terminal output)
+- **AI Integration**: Google Gemini (free tier) + OpenAI (optional)
+
+### Core Features
+1. **Keyword Analysis**: Analyzes short-tail and long-tail keywords with Google-like matching
+2. **Technical SEO**: Title tags, meta descriptions, canonical tags, Open Graph
+3. **Content Analysis**: Keyword density, placement, distribution, word count
+4. **Structure Analysis**: Heading hierarchy, H1 usage, image alt tags
+5. **Link Analysis**: Internal/external link counts and quality
+6. **AI-Powered Recommendations**: Optional AI analysis using Gemini or OpenAI
+
+### Project Structure
+```
+seo_analyzer/
+├── main.py                      # Entry point
+├── requirements.txt             # Dependencies
+├── src/
+│   ├── app.py                   # CLI interface
+│   ├── config.py                # Configuration constants
+│   ├── core/                    # Core functionality
+│   │   ├── orchestrator.py      # Main controller
+│   │   ├── fetcher.py           # Web content fetching
+│   │   ├── keyword_processor.py # NLP keyword processing
+│   │   └── scoring.py           # Scoring engine
+│   ├── analyzers/               # Analysis modules
+│   │   ├── base_analyzer.py     # Base class
+│   │   ├── technical_seo.py     # Technical SEO checks
+│   │   ├── content_analyzer.py  # Content analysis
+│   │   ├── structure_analyzer.py# Structure checks
+│   │   ├── link_analyzer.py     # Link analysis
+│   │   └── ai_analyzer.py       # AI-powered recommendations
+│   ├── output/                  # Output formatters
+│   │   ├── cli_renderer.py      # Rich CLI output
+│   │   └── json_exporter.py     # JSON export
+│   └── utils/                   # Utilities
+│       ├── text_utils.py        # Text processing helpers
+│       └── validation.py        # Input validation
+├── public/
+│   └── DESIGN_ARCHITECTURE_DOCS.md  # Detailed architecture docs
+└── README.md                    # User documentation
+```
 
 ## User Preferences
+- Simple, everyday language preferred
+- Focus on actionable SEO recommendations
+- Keyword-focused analysis for defined keywords only
 
-Preferred communication style: Simple, everyday language.
+## How to Use
 
-## System Architecture
+### Basic Usage
+```bash
+# Analyze a webpage with keywords
+python main.py --url "https://example.com" --keywords "seo,optimization,website"
 
-### Architecture Pattern
-**Modular Pipeline Architecture** - The application follows a pipeline pattern where data flows through distinct stages: fetching → processing → analysis → scoring → output. Each stage is isolated and communicates through well-defined data structures.
+# With verbose output
+python main.py --url "https://example.com" --keywords "seo,optimization" --verbose
 
-### Core Components
+# With AI-powered recommendations (requires GEMINI_API_KEY or OPENAI_API_KEY)
+python main.py --url "https://example.com" --keywords "seo,optimization" --ai
 
-#### 1. CLI Interface Layer
-- **Technology**: Rich library for colored terminal output, argparse for command parsing
-- **Purpose**: Handles user input validation and provides formatted console output
-- **Key Files**: `src/main.py`, `src/output/cli_renderer.py`
-- **Design Decision**: Using Rich library for beautiful CLI output instead of plain text to improve user experience and readability of complex analysis results
-
-#### 2. Orchestrator/Controller
-- **Pattern**: Orchestration pattern to coordinate the analysis pipeline
-- **File**: `src/core/orchestrator.py`
-- **Responsibilities**: 
-  - Coordinates the execution flow between fetcher, processors, and analyzers
-  - Aggregates results from all analysis modules
-  - Generates final report structure
-- **Design Decision**: Centralized orchestration ensures predictable execution order and makes it easy to add/remove analysis modules
-
-#### 3. Content Fetcher
-- **File**: `src/core/fetcher.py`
-- **Technology**: Requests library for HTTP, BeautifulSoup4 for HTML parsing
-- **Purpose**: Fetches web pages and extracts structured data (title, meta tags, headings, links, images, body text)
-- **Design Decision**: Using BeautifulSoup instead of regex for robust HTML parsing that handles malformed HTML gracefully
-
-#### 4. Keyword Processor
-- **File**: `src/core/keyword_processor.py`
-- **Technology**: NLTK for NLP operations (tokenization, stemming, stopword removal)
-- **Purpose**: Generates keyword variations using stemming and stopword removal for intelligent matching
-- **Design Decision**: Multi-variation matching (exact, stemmed, stopwords-removed) provides Google-like keyword detection that catches semantic variations
-
-#### 5. Analysis Modules (Plugin-like Architecture)
-Each analyzer inherits from `BaseAnalyzer` and implements specific SEO checks:
-
-- **TechnicalSEOAnalyzer**: Title tags, meta descriptions, canonical tags, Open Graph tags
-- **ContentAnalyzer**: Keyword density, placement, distribution, word count
-- **StructureAnalyzer**: Heading hierarchy, H1 usage, image alt tags
-- **LinkAnalyzer**: Internal/external link counts and quality
-- **AIAnalyzer** (Optional): AI-powered SEO recommendations using Claude Anthropic
-  - Generates intelligent SEO recommendations based on current scores
-  - Creates optimized title tags (50-60 characters)
-  - Generates optimized meta descriptions (150-160 characters)
-  - Analyzes content quality (readability, engagement, keyword stuffing risk, content value)
-
-**Design Decision**: Abstract base class pattern allows easy addition of new analysis modules without modifying the orchestrator. Each analyzer is independent and testable.
-
-#### 6. Scoring Engine
-- **File**: `src/core/scoring.py`
-- **Purpose**: Calculates weighted scores for individual metrics and overall SEO score
-- **Configuration**: `src/config.py` contains all weights and thresholds
-- **Design Decision**: Centralized scoring with configurable weights allows easy tuning of importance across different SEO factors
-
-#### 7. Output Layer
-- **CLI Renderer**: Rich-formatted console output with colors, tables, and progress indicators
-- **JSON Exporter**: Optional structured JSON output for automation/integration
-- **Design Decision**: Dual output format supports both human interaction (CLI) and machine integration (JSON)
-
-### Data Flow
-
-```
-User Input (URL + Keywords)
-    ↓
-Content Fetcher (HTML → Structured WebContent)
-    ↓
-Keyword Processor (Keywords → Variations with stemming)
-    ↓
-Parallel Analysis Modules (4-5 analyzers process independently)
-    ↓
-[Optional] AI Analyzer (if --ai flag enabled)
-    ↓
-Scoring Engine (Weighted aggregation)
-    ↓
-Report Generation (AnalysisReport dataclass)
-    ↓
-Output (CLI display and/or JSON export)
+# Export to JSON
+python main.py --url "https://example.com" --keywords "seo,optimization" --output report.json
 ```
 
-### Configuration Management
-- **File**: `src/config.py`
-- **Pattern**: Centralized configuration module
-- **Contains**: 
-  - SEO thresholds (optimal title length, keyword density ranges)
-  - Scoring weights for different modules
-  - HTTP request settings
-- **Design Decision**: Single source of truth for all configurable values makes tuning and testing easier
+### Command Line Arguments
+- `-u, --url`: Target URL to analyze (required)
+- `-k, --keywords`: Comma-separated focus keywords (required)
+- `-o, --output`: JSON output file path (optional)
+- `-v, --verbose`: Show detailed analysis (optional)
+- `--ai`: Enable AI-powered SEO recommendations (optional, requires API key)
 
-### Text Processing Pipeline
-- **NLTK Integration**: Downloads required corpora on first run
-- **Stemming**: Porter Stemmer for reducing words to root forms
-- **Tokenization**: Regex-based word extraction
-- **Design Decision**: NLTK provides battle-tested NLP operations; lazy downloading of data reduces initial package size
+## AI Integration
 
-## External Dependencies
+### Using Google Gemini (FREE - Recommended)
+1. Get a FREE API key from https://aistudio.google.com/apikey
+2. Add it to Local Dev Env Secrets as `GEMINI_API_KEY`
+3. Run with `--ai` flag to get AI-powered recommendations
+4. Uses `gemini-2.5-flash` model (fast and free)
 
-### Third-Party Libraries
+### Using OpenAI (Paid)
+1. Get an API key from https://platform.openai.com/api-keys
+2. Add it to Local Dev Env Secrets as `OPENAI_API_KEY`
+3. Run with `--ai` flag to get AI-powered recommendations
+4. Uses `gpt-5` model (requires credits)
 
-1. **requests** (>=2.31.0)
-   - Purpose: HTTP client for fetching web pages
-   - Usage: `src/core/fetcher.py`
+### AI Features
+When enabled with `--ai` flag, the tool provides:
+- 5 specific, actionable SEO recommendations focused on your keywords
+- AI-optimized title tag (50-60 characters)
+- AI-optimized meta description (150-160 characters)
+- Content quality analysis (readability, engagement, keyword targeting)
+- **Grammar & Readability Analysis (SEO-Safe)**:
+  - Grammar score (1-10)
+  - Grammar issues detection
+  - Grammar fixes that preserve all SEO keywords
+  - Readability improvements without keyword changes
+  - Improved title and meta description with keywords intact
 
-2. **beautifulsoup4** (>=4.12.0)
-   - Purpose: HTML/XML parsing
-   - Usage: Extracting structured data from HTML documents
-   - Parser: Uses lxml for better performance
+## Keyword Matching Algorithm
+The tool uses intelligent keyword matching similar to Google:
+1. **Normalization**: Lowercase conversion
+2. **Tokenization**: Word splitting
+3. **Stemming**: Porter Stemmer for root forms (e.g., "learning" → "learn")
+4. **Stop Words Removal**: Ignores common words ("the", "a", "and", etc.)
+5. **Variation Detection**: Finds keyword variations and related terms
 
-3. **lxml** (>=4.9.0)
-   - Purpose: XML/HTML parser backend for BeautifulSoup
-   - Chosen for speed and robustness
+## Scoring System
+- **Overall SEO Score**: 0-100
+  - Keyword Analysis: 40%
+  - Technical SEO: 20%
+  - Content Quality: 20%
+  - Structure: 10%
+  - Links: 10%
 
-4. **nltk** (>=3.8.0)
-   - Purpose: Natural Language Processing
-   - Features Used: Tokenization, stemming (Porter Stemmer), stopword removal
-   - Data Downloads: punkt, punkt_tab, stopwords (downloaded on first run)
+## Dependencies
+- requests>=2.31.0
+- beautifulsoup4>=4.12.0
+- nltk>=3.8.0
+- rich>=13.7.0
+- lxml>=4.9.0
+- google-genai>=1.0.0 (for Gemini AI)
+- openai>=2.0.0 (for OpenAI)
 
-5. **rich** (>=13.7.0)
-   - Purpose: Terminal formatting and output
-   - Features Used: Colored text, tables, panels, progress indicators, box styles
+## Environment Variables
+- `GEMINI_API_KEY`: Google Gemini API key (optional, for AI features)
+- `OPENAI_API_KEY`: OpenAI API key (optional, for AI features)
 
-6. **anthropic** (>=0.73.0) - *Optional for AI features*
-   - Purpose: Claude AI integration for intelligent SEO recommendations
-   - Model: claude-sonnet-4-20250514 (latest as of August 2025)
-   - Features Used: AI-powered content optimization, meta description generation, title optimization
-   - Requires: ANTHROPIC_API_KEY environment variable
-
-### External Services (Optional)
-- **Claude Anthropic API**: Used when `--ai` flag is enabled
-  - Provides AI-powered SEO recommendations
-  - Generates optimized title tags and meta descriptions
-  - Analyzes content quality with readability and engagement metrics
-  - Requires API key (set via ANTHROPIC_API_KEY environment variable)
-- Base SEO analysis operates entirely locally with no API dependencies
-
-### Development Dependencies
-- Testing framework would require pytest (not currently included in requirements.txt)
-- Test files exist as placeholders in `src/tests/`
+## Notes
+- NLTK data (punkt, stopwords, punkt_tab) is automatically downloaded on first run
+- The tool works with static HTML pages only (no JavaScript rendering)
+- AI recommendations are keyword-focused and tailored to your specific keywords
+- Gemini is recommended for free, powerful AI analysis
