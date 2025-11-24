@@ -3,7 +3,5 @@ beautifulsoup4>=4.12.0
 nltk>=3.8.0
 rich>=13.7.0
 lxml>=4.9.0
-beautifulsoup4
-nltk
-requests
-rich
+google-genai>=1.0.0
+openai>=2.0.0

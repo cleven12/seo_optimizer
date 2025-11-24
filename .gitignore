@@ -1,4 +1,8 @@
 __pycache__
-venv
+.idea/
 *.pyc
-.vscode
+venv/
+*.pyc
+.vscode/
+.env
+./src/utils/__pycache__/
