@@ -90,8 +90,8 @@ def render_report(report: AnalysisReport, verbose: bool = False):
             console.print()
             error_msg = report.ai_analysis.details.get('error', 'Unknown error')
             console.print(f"[yellow]⚠️  AI features unavailable: {error_msg}[/yellow]")
-            if 'ANTHROPIC_API_KEY not configured' in error_msg:
-                console.print("[dim]Add ANTHROPIC_API_KEY environment variable to enable AI features[/dim]")
+            if 'No AI API key configured' in error_msg:
+                console.print("[dim]Add GEMINI_API_KEY (free) or OPENAI_API_KEY to enable AI features[/dim]")
             console.print()
         elif report.ai_analysis.status == 'passed':
             console.print("━" * 60, style="blue")
