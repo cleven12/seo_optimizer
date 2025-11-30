@@ -1,6 +1,6 @@
-from typing import List, Dict
+from typing import List
 from dataclasses import dataclass
-from src.utils.text_utils import normalize_text, tokenize, remove_stop_words, stem_words, stem_word
+from src.utils.text_utils import normalize_text, tokenize, remove_stop_words, stem_words
 
 @dataclass
 class KeywordVariation:

@@ -24,6 +24,10 @@ class AnalysisReport:
     ai_analysis: Optional[ModuleResult] = None
 
 def run_analysis(url: str, keywords: List[str], verbose: bool = False, use_ai: bool = False) -> AnalysisReport:
+    """Run comprehensive SEO analysis on a URL with given keywords."""
+    if not url or not keywords:
+        raise ValueError("URL and keywords are required")
+    
     content = fetch_content(url)
     
     keyword_variations = process_keywords(keywords)

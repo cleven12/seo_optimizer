@@ -41,6 +41,10 @@ def stem_words(words: List[str]) -> List[str]:
     return [stem_word(w) for w in words]
 
 def calculate_density(keyword: str, text: str) -> float:
+    """Calculate keyword density as percentage of total words."""
+    if not keyword or not text:
+        return 0.0
+    
     text_lower = text.lower()
     keyword_lower = keyword.lower()
     
@@ -59,8 +63,12 @@ def calculate_density(keyword: str, text: str) -> float:
         keyword_pattern = r'\b' + r'\s+'.join(keyword_words) + r'\b'
         keyword_count = len(re.findall(keyword_pattern, text_lower))
     
-    return (keyword_count / total_words) * 100
+    return round((keyword_count / total_words) * 100, 2)
 
 def get_first_n_words(text: str, n: int) -> str:
+    """Extract first n words from text."""
+    if not text or n <= 0:
+        return ""
+    
     words = tokenize(text)
     return ' '.join(words[:n])

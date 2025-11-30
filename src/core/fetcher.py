@@ -79,5 +79,11 @@ def fetch_content(url: str) -> WebContent:
         
         return WebContent(url, response.text, soup)
     
+    except requests.exceptions.Timeout:
+        raise Exception(f"Request timeout: URL took longer than {REQUEST_TIMEOUT}s to respond")
+    except requests.exceptions.ConnectionError:
+        raise Exception("Connection failed: Unable to reach the URL")
+    except requests.exceptions.HTTPError as e:
+        raise Exception(f"HTTP Error {response.status_code}: {str(e)}")
     except requests.exceptions.RequestException as e:
         raise Exception(f"Failed to fetch URL: {str(e)}")
