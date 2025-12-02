@@ -1,0 +1,406 @@
+{% extends 'base.html' %}
+
+{% block title %}SEO Analyzer - SEO Optimizer{% endblock %}
+
+{% block content %}
+<div class="grid md:grid-cols-3 gap-8">
+    <!-- Input Panel -->
+    <div class="md:col-span-1">
+        <div class="bg-white rounded-lg shadow-md p-6 sticky top-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-6">Analyze Website</h3>
+            
+            <form id="analyzerForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Website URL *</label>
+                    <input 
+                        type="url" 
+                        id="url" 
+                        name="url"
+                        placeholder="https://example.com" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    >
+                    <p class="text-xs text-gray-500 mt-1">Enter the full URL including https://</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Keywords (Optional)</label>
+                    <input 
+                        type="text" 
+                        id="keywords" 
+                        name="keywords"
+                        placeholder="e.g. SEO, optimization, ranking"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                    <p class="text-xs text-gray-500 mt-1">Comma-separated keywords (optional)</p>
+                </div>
+
+                <div class="flex items-center">
+                    <input 
+                        type="checkbox" 
+                        id="useAI" 
+                        name="useAI"
+                        class="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                    >
+                    <label for="useAI" class="ml-2 text-sm text-gray-700">Include AI Recommendations</label>
+                </div>
+
+                <button 
+                    type="submit" 
+                    id="analyzeBtn"
+                    class="w-full bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700 transition"
+                >
+                    Analyze Now
+                </button>
+            </form>
+
+            <div id="loadingInfo" class="hidden mt-4 text-center">
+                <div class="inline-block">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Analyzing... This may take a few seconds.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Panel -->
+    <div class="md:col-span-2">
+        <div id="resultsPanel" class="hidden space-y-6">
+            <!-- Score Overview -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Overall Score</h3>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-4xl font-bold" id="overallScore">0</div>
+                    <div class="relative w-32 h-32">
+                        <canvas id="scoreChart"></canvas>
+                    </div>
+                </div>
+                <p id="scoreMessage" class="text-gray-600"></p>
+            </div>
+
+            <!-- Score Breakdown -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Score Breakdown</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center pb-4 border-b">
+                        <span class="font-semibold text-gray-700">Technical SEO</span>
+                        <div class="flex items-center gap-4">
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div id="technicalBar" class="bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                            <span id="technicalScore" class="font-bold w-10">0</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center pb-4 border-b">
+                        <span class="font-semibold text-gray-700">Content Quality</span>
+                        <div class="flex items-center gap-4">
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div id="contentBar" class="bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                            <span id="contentScore" class="font-bold w-10">0</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center pb-4 border-b">
+                        <span class="font-semibold text-gray-700">Structure & Markup</span>
+                        <div class="flex items-center gap-4">
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div id="structureBar" class="bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                            <span id="structureScore" class="font-bold w-10">0</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="font-semibold text-gray-700">Link Quality</span>
+                        <div class="flex items-center gap-4">
+                            <div class="w-32 bg-gray-200 rounded-full h-2">
+                                <div id="linkBar" class="bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                            <span id="linkScore" class="font-bold w-10">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Radar Chart -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">SEO Profile</h3>
+                <canvas id="radarChart" height="80"></canvas>
+            </div>
+
+            <!-- Keywords -->
+            <div id="keywordsSection" class="hidden bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Keywords Analysis</h3>
+                <div id="keywordsList" class="space-y-2"></div>
+            </div>
+
+            <!-- Top Recommendations -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Top Recommendations</h3>
+                <div id="recommendationsList" class="space-y-3"></div>
+            </div>
+
+            <!-- Actions -->
+            <div class="bg-white rounded-lg shadow-md p-6 flex gap-4">
+                <button id="saveBtn" class="flex-1 bg-green-600 text-white py-2 rounded-lg font-bold hover:bg-green-700">
+                    💾 Save Report
+                </button>
+                <button id="exportBtn" class="flex-1 bg-orange-600 text-white py-2 rounded-lg font-bold hover:bg-orange-700">
+                    📄 Export PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="bg-white rounded-lg shadow-md p-12 text-center">
+            <p class="text-gray-500 text-lg">Enter a URL and click "Analyze Now" to see results</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="hidden bg-red-50 border-l-4 border-red-600 p-6 rounded-lg">
+            <h4 class="text-red-800 font-bold mb-2">Analysis Failed</h4>
+            <p id="errorMessage" class="text-red-600"></p>
+        </div>
+    </div>
+</div>
+
+<!-- Save Report Modal -->
+<div id="saveModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg p-6 w-full max-w-md">
+        <h3 class="text-xl font-bold text-gray-800 mb-4">Save Report</h3>
+        <input 
+            type="text" 
+            id="reportName" 
+            placeholder="Report name"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+        <textarea 
+            id="reportDescription"
+            placeholder="Optional description"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 h-20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        ></textarea>
+        <div class="flex gap-4">
+            <button id="cancelSave" class="flex-1 bg-gray-300 text-gray-800 py-2 rounded-lg font-bold hover:bg-gray-400">
+                Cancel
+            </button>
+            <button id="confirmSave" class="flex-1 bg-green-600 text-white py-2 rounded-lg font-bold hover:bg-green-700">
+                Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentReportId = null;
+let radarChart = null;
+let scoreChart = null;
+
+document.getElementById('analyzerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    analyzeWebsite();
+});
+
+async function analyzeWebsite() {
+    const url = document.getElementById('url').value;
+    const keywordsInput = document.getElementById('keywords').value;
+    const keywords = keywordsInput.split(',').map(k => k.trim()).filter(k => k);
+    const useAI = document.getElementById('useAI').checked;
+
+    // Show loading
+    document.getElementById('loadingInfo').classList.remove('hidden');
+    document.getElementById('resultsPanel').classList.add('hidden');
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('errorState').classList.add('hidden');
+
+    try {
+        const response = await fetch('/api/reports/analyze/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({
+                url,
+                keywords,
+                include_ai: useAI
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            currentReportId = data.id;
+            // Poll for results
+            pollForResults(data.id);
+        } else {
+            showError(data.detail || 'Analysis failed');
+        }
+    } catch (error) {
+        showError(error.message);
+    }
+
+    document.getElementById('loadingInfo').classList.add('hidden');
+}
+
+function pollForResults(reportId) {
+    const pollInterval = setInterval(async () => {
+        try {
+            const response = await fetch(`/api/reports/${reportId}/`);
+            const data = await response.json();
+
+            if (data.status === 'completed') {
+                clearInterval(pollInterval);
+                displayResults(data);
+            } else if (data.status === 'failed') {
+                clearInterval(pollInterval);
+                showError(data.error_message || 'Analysis failed');
+            }
+        } catch (error) {
+            console.error('Poll error:', error);
+        }
+    }, 1000);
+}
+
+function displayResults(data) {
+    document.getElementById('loadingInfo').classList.add('hidden');
+    document.getElementById('resultsPanel').classList.remove('hidden');
+    document.getElementById('emptyState').classList.add('hidden');
+
+    // Update scores
+    document.getElementById('overallScore').textContent = data.scores.overall;
+    document.getElementById('technicalScore').textContent = data.scores.technical;
+    document.getElementById('contentScore').textContent = data.scores.content;
+    document.getElementById('structureScore').textContent = data.scores.structure;
+    document.getElementById('linkScore').textContent = data.scores.links;
+
+    // Update bars
+    document.getElementById('technicalBar').style.width = data.scores.technical + '%';
+    document.getElementById('contentBar').style.width = data.scores.content + '%';
+    document.getElementById('structureBar').style.width = data.scores.structure + '%';
+    document.getElementById('linkBar').style.width = data.scores.links + '%';
+
+    // Score message
+    const score = data.scores.overall;
+    let message = '';
+    if (score >= 80) message = '✅ Excellent SEO performance!';
+    else if (score >= 60) message = '🟡 Good SEO, but room for improvement';
+    else if (score >= 40) message = '⚠️ Fair SEO, needs optimization';
+    else message = '❌ Poor SEO, significant improvements needed';
+    document.getElementById('scoreMessage').textContent = message;
+
+    // Radar chart
+    if (radarChart) radarChart.destroy();
+    const radarCtx = document.getElementById('radarChart').getContext('2d');
+    radarChart = new Chart(radarCtx, {
+        type: 'radar',
+        data: {
+            labels: ['Technical', 'Content', 'Structure', 'Links'],
+            datasets: [{
+                label: 'SEO Scores',
+                data: [
+                    data.scores.technical,
+                    data.scores.content,
+                    data.scores.structure,
+                    data.scores.links
+                ],
+                borderColor: '#2563eb',
+                backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                pointBackgroundColor: '#2563eb',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                r: {
+                    max: 100,
+                    ticks: { stepSize: 20 }
+                }
+            }
+        }
+    });
+
+    // Keywords
+    if (data.keywords && data.keywords.length > 0) {
+        document.getElementById('keywordsSection').classList.remove('hidden');
+        const keywordsList = document.getElementById('keywordsList');
+        keywordsList.innerHTML = data.keywords.map(kw =>
+            `<div class="flex justify-between items-center bg-blue-50 p-3 rounded">
+                <span>${kw.keyword}</span>
+                <span class="bg-blue-600 text-white px-3 py-1 rounded text-sm font-bold">${kw.score || 0}</span>
+            </div>`
+        ).join('');
+    }
+
+    // Recommendations
+    const recommendationsList = document.getElementById('recommendationsList');
+    recommendationsList.innerHTML = (data.recommendations || []).slice(0, 5).map((rec, i) =>
+        `<div class="flex items-start gap-3 bg-blue-50 p-4 rounded">
+            <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm">${i + 1}</span>
+            <p class="text-gray-700">${rec}</p>
+        </div>`
+    ).join('');
+}
+
+function showError(message) {
+    document.getElementById('loadingInfo').classList.add('hidden');
+    document.getElementById('resultsPanel').classList.add('hidden');
+    document.getElementById('emptyState').classList.add('hidden');
+    document.getElementById('errorState').classList.remove('hidden');
+    document.getElementById('errorMessage').textContent = message;
+}
+
+// Save Report
+document.getElementById('saveBtn').addEventListener('click', () => {
+    document.getElementById('reportName').value = '';
+    document.getElementById('reportDescription').value = '';
+    document.getElementById('saveModal').classList.remove('hidden');
+});
+
+document.getElementById('cancelSave').addEventListener('click', () => {
+    document.getElementById('saveModal').classList.add('hidden');
+});
+
+document.getElementById('confirmSave').addEventListener('click', async () => {
+    const name = document.getElementById('reportName').value || 'Untitled Report';
+    const description = document.getElementById('reportDescription').value;
+
+    try {
+        const response = await fetch(`/api/reports/${currentReportId}/save/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({ name, description })
+        });
+
+        if (response.ok) {
+            alert('Report saved successfully!');
+            document.getElementById('saveModal').classList.add('hidden');
+        }
+    } catch (error) {
+        alert('Failed to save report: ' + error.message);
+    }
+});
+
+// Export PDF
+document.getElementById('exportBtn').addEventListener('click', async () => {
+    window.location.href = `/api/reports/${currentReportId}/export_pdf/`;
+});
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+{% endblock %}

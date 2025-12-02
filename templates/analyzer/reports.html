@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Reports - SEO Optimizer{% endblock %}
+
+{% block content %}
+<div>
+    <h2 class="text-3xl font-bold text-gray-800 mb-8">Saved Reports</h2>
+
+    {% if reports %}
+    <div class="grid gap-6">
+        {% for report in reports %}
+        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800">{{ report.name }}</h3>
+                    <p class="text-gray-600">{{ report.report.url }}</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-3xl font-bold text-blue-600">{{ report.report.overall_score }}</div>
+                    <p class="text-sm text-gray-500">out of 100</p>
+                </div>
+            </div>
+
+            {% if report.description %}
+            <p class="text-gray-700 mb-4">{{ report.description }}</p>
+            {% endif %}
+
+            <div class="flex justify-between items-center text-sm text-gray-600 mb-4">
+                <span>{{ report.created_at|date:"M d, Y H:i" }}</span>
+                <span>Analysis Time: {{ report.report.analysis_time|floatformat:2 }}s</span>
+            </div>
+
+            <div class="flex gap-4">
+                <a href="{% url 'analyzer:report-detail' report.pk %}" class="flex-1 bg-blue-600 text-white py-2 rounded-lg text-center font-semibold hover:bg-blue-700">
+                    View Details
+                </a>
+                <a href="/api/reports/{{ report.report.pk }}/export_pdf/" class="flex-1 bg-orange-600 text-white py-2 rounded-lg text-center font-semibold hover:bg-orange-700">
+                    Download PDF
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <div class="mt-8 flex justify-center gap-4">
+        {% if page_obj.has_previous %}
+        <a href="?page=1" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">First</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">← Previous</a>
+        {% endif %}
+
+        <span class="px-4 py-2">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Next →</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Last</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div class="bg-white rounded-lg shadow-md p-12 text-center">
+        <p class="text-gray-500 text-lg mb-4">No saved reports yet</p>
+        <a href="{% url 'analyzer:analyzer' %}" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-700 inline-block">
+            Start Analyzing →
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

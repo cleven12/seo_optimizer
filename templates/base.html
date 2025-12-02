@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SEO Optimizer{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold text-blue-600">🔍 SEO Optimizer</h1>
+            </div>
+            <div class="flex space-x-6">
+                <a href="{% url 'analyzer:index' %}" class="text-gray-700 hover:text-blue-600">Home</a>
+                <a href="{% url 'analyzer:analyzer' %}" class="text-gray-700 hover:text-blue-600">Analyzer</a>
+                <a href="{% url 'analyzer:reports' %}" class="text-gray-700 hover:text-blue-600">Reports</a>
+                <a href="{% url 'analyzer:guide' %}" class="text-gray-700 hover:text-blue-600">Guide</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 py-8 text-center">
+            <p>&copy; 2024 SEO Optimizer - Powered by AI & Google Search Guidelines</p>
+            <p class="text-sm text-gray-400 mt-2">Analyze and optimize your website for search engines</p>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

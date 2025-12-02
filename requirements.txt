@@ -1,7 +1,23 @@
+# Core Dependencies
 requests>=2.31.0
 beautifulsoup4>=4.12.0
 nltk>=3.8.0
 rich>=13.7.0
 lxml>=4.9.0
+
+# AI Integration (Optional)
 google-genai>=1.0.0
 openai>=2.0.0
+
+# Django SaaS Framework
+Django>=4.2.0
+djangorestframework>=3.14.0
+django-cors-headers>=4.0.0
+
+# PDF Generation
+reportlab>=4.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+gunicorn>=20.1.0
+

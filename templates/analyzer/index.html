@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - SEO Optimizer{% endblock %}
+
+{% block content %}
+<div class="grid md:grid-cols-3 gap-6 mb-8">
+    <!-- Hero Section -->
+    <div class="md:col-span-3 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg p-8">
+        <h2 class="text-4xl font-bold mb-4">Optimize Your Website for Search Engines</h2>
+        <p class="text-lg mb-6">Free SEO analysis tool powered by Google Search Guidelines. Analyze any website and get actionable recommendations.</p>
+        <a href="{% url 'analyzer:analyzer' %}" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 inline-block">
+            Start Analyzing →
+        </a>
+    </div>
+
+    <!-- Statistics -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold text-gray-800 mb-2">Total Analyses</h3>
+        <p class="text-4xl font-bold text-blue-600">{{ total_analyses }}</p>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold text-gray-800 mb-2">Completed</h3>
+        <p class="text-4xl font-bold text-green-600">{{ recent_analyses|length }}</p>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold text-gray-800 mb-2">Average Score</h3>
+        <p class="text-4xl font-bold text-orange-600">75/100</p>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="bg-white rounded-lg shadow-md p-8 mb-8">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">Key Features</h3>
+    <div class="grid md:grid-cols-2 gap-6">
+        <div>
+            <h4 class="font-bold text-lg text-blue-600 mb-2">✅ Technical SEO Analysis</h4>
+            <p class="text-gray-700">Analyze title tags, meta descriptions, headers, canonical tags, and more.</p>
+        </div>
+        <div>
+            <h4 class="font-bold text-lg text-blue-600 mb-2">📊 Content Quality Check</h4>
+            <p class="text-gray-700">Evaluate keyword density, word count, content freshness, and relevance.</p>
+        </div>
+        <div>
+            <h4 class="font-bold text-lg text-blue-600 mb-2">🔗 Structure & Markup</h4>
+            <p class="text-gray-700">Verify proper heading hierarchy, schema markup, and semantic HTML.</p>
+        </div>
+        <div>
+            <h4 class="font-bold text-lg text-blue-600 mb-2">🎯 Link Quality Analysis</h4>
+            <p class="text-gray-700">Check internal and external links for quality and relevance.</p>
+        </div>
+        <div>
+            <h4 class="font-bold text-lg text-blue-600 mb-2">💡 Smart Recommendations</h4>
+            <p class="text-gray-700">Get AI-powered, actionable recommendations to improve rankings.</p>
+        </div>
+        <div>
+            <h4 class="font-bold text-lg text-blue-600 mb-2">📄 PDF Reports</h4>
+            <p class="text-gray-700">Export detailed analysis reports as professional PDF documents.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Analyses -->
+{% if recent_analyses %}
+<div class="bg-white rounded-lg shadow-md p-8">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">Recent Analyses</h3>
+    <div class="space-y-4">
+        {% for analysis in recent_analyses %}
+        <div class="border-l-4 border-blue-600 pl-4 py-2">
+            <h4 class="font-bold text-gray-800">{{ analysis.url }}</h4>
+            <div class="flex justify-between text-sm text-gray-600 mt-2">
+                <span>Score: <span class="font-bold text-blue-600">{{ analysis.overall_score }}/100</span></span>
+                <span>{{ analysis.created_at|date:"M d, Y H:i" }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

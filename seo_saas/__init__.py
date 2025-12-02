@@ -1,0 +1,1 @@
+"""SEO SaaS Django Project"""
