@@ -172,6 +172,7 @@ class AnalysisReportViewSet(viewsets.ModelViewSet):
             report.link_score = analysis_result['scores'].get('links', 0)
             report.title = analysis_result.get('title', '')
             report.analysis_data = analysis_result.get('analysis_data', {})
+            report.keywords = analysis_result.get('keywords', [])
             report.recommendations = analysis_result.get('recommendations', [])
             report.analysis_time = time.time() - start_time
             report.save()

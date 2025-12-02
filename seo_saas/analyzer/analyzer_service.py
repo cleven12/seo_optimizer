@@ -92,15 +92,23 @@ def transform_analysis_report(report) -> Dict[str, Any]:
     
     # Extract keywords and their scores
     keywords_data = []
-    if hasattr(report, 'keyword_cluster'):
+    if hasattr(report, 'keyword_cluster') and report.keyword_cluster:
         keyword_cluster = report.keyword_cluster
-        if keyword_cluster:
-            for kw, score in keyword_cluster.items():
+        # keyword_cluster is a ClusterScore object with individual_scores list
+        if hasattr(keyword_cluster, 'individual_scores'):
+            for kw_score in keyword_cluster.individual_scores:
                 keywords_data.append({
-                    'keyword': kw,
-                    'score': score.get('score', 0) if isinstance(score, dict) else 0,
-                    'cluster': score.get('cluster', '') if isinstance(score, dict) else '',
+                    'keyword': kw_score.keyword,
+                    'score': kw_score.score,
                 })
+        # Also add the main keywords if available
+        if hasattr(keyword_cluster, 'keywords'):
+            # Get cluster score
+            cluster_score_val = keyword_cluster.cluster_score if hasattr(keyword_cluster, 'cluster_score') else 0
+            keywords_data.insert(0, {
+                'keyword': ', '.join(keyword_cluster.keywords) if keyword_cluster.keywords else 'Main Keywords',
+                'score': cluster_score_val,
+            })
     
     # Build analysis details
     technical_details = {}
