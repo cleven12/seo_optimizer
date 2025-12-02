@@ -42,9 +42,20 @@ def run_seo_analysis(
         Dictionary with analysis results
     """
     try:
-        # Use keywords if provided, otherwise analyze based on SE guidelines
+        # If no keywords provided, use page title or default keywords
         if not keywords:
-            keywords = []  # Empty list means analyze based on page content
+            from src.core.fetcher import fetch_content
+            try:
+                content = fetch_content(url)
+                # Extract keywords from title
+                title = content.title or ""
+                if title:
+                    # Split title into meaningful keywords
+                    keywords = [word.strip() for word in title.split() if len(word.strip()) > 3][:3]
+                else:
+                    keywords = ["seo", "optimization"]
+            except:
+                keywords = ["seo", "optimization"]
         
         # Run the CLI analysis orchestrator
         report = run_cli_analysis(url, keywords, verbose, use_ai)
