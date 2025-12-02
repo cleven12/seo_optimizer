@@ -32,3 +32,16 @@ KEYWORD_SCORE_WEIGHTS = {
     'density_score': 0.15,
     'distribution_score': 0.15
 }
+
+CLUSTER_KEYWORD_SCORE_WEIGHTS = {
+    'primary': 0.50,
+    'secondary': 0.30,
+    'related': 0.20
+}
+
+SEO_SCORE_THRESHOLDS = {
+    'excellent': 80,
+    'good': 60,
+    'fair': 40,
+    'poor': 0
+}
