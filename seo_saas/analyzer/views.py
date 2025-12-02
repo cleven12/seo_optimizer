@@ -187,9 +187,10 @@ class AnalysisReportViewSet(viewsets.ModelViewSet):
             )
         
         except Exception as e:
+            import traceback
             report = AnalysisReport.objects.get(id=report_id)
             report.status = 'failed'
-            report.error_message = str(e)
+            report.error_message = f"{str(e)}\n{traceback.format_exc()}"
             report.save()
     
     @action(detail=True, methods=['get'])

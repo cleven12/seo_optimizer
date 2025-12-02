@@ -24,6 +24,7 @@ urlpatterns = [
     
     # API routes
     path('api/', include(router.urls)),
+    path('api/reports/analyze/', views.AnalysisReportViewSet.as_view({'post': 'analyze'}), name='api-analyze'),
     path('api/guide/', views.guide_api, name='api-guide'),
     path('api/stats/', views.stats_api, name='api-stats'),
 ]
