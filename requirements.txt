@@ -1,7 +1,21 @@
+# Core Python packages
 requests>=2.31.0
 beautifulsoup4>=4.12.0
 nltk>=3.8.0
 rich>=13.7.0
 lxml>=4.9.0
+
+# AI integrations
 google-genai>=1.0.0
 openai>=2.0.0
+
+# Django & REST framework
+Django>=5.0
+djangorestframework>=3.14.0
+django-filter>=23.5
+
+# PDF generation
+ReportLab>=4.0.0
+
+# Environment management
+python-dotenv>=1.0.0
