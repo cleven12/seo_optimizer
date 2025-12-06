@@ -148,6 +148,32 @@ class AnalysisReportViewSet(viewsets.ModelViewSet):
             AnalysisReportSerializer(report).data,
             status=status.HTTP_201_CREATED
         )
+
+    @action(detail=False, methods=['post'], permission_classes=[AllowAny])
+    def preview(self, request):
+        """
+        Preview analysis without saving to the database.
+
+        POST /api/reports/preview/
+        {
+            "url": "https://example.com",
+            "keywords": ["kw1", "kw2"],
+            "include_ai": false
+        }
+        """
+        serializer = AnalysisRequestSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        url = serializer.validated_data['url']
+        keywords = serializer.validated_data.get('keywords', [])
+        include_ai = serializer.validated_data.get('include_ai', False)
+
+        try:
+            analysis_result = run_seo_analysis(url, keywords, include_ai)
+            return Response(analysis_result, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'detail': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
     @staticmethod
     def _run_analysis(report_id, keywords, include_ai):

@@ -212,7 +212,7 @@ async function analyzeWebsite() {
     document.getElementById('errorState').classList.add('hidden');
 
     try {
-        const response = await fetch('/api/reports/analyze/', {
+        const response = await fetch('/api/reports/preview/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -228,9 +228,9 @@ async function analyzeWebsite() {
         const data = await response.json();
 
         if (response.ok) {
-            currentReportId = data.id;
-            // Poll for results
-            pollForResults(data.id);
+            // Preview returns the analysis results synchronously
+            currentReportId = null; // No DB record persisted for preview
+            displayResults(data);
         } else {
             showError(data.detail || 'Analysis failed');
         }
@@ -264,9 +264,8 @@ function displayResults(data) {
     document.getElementById('loadingInfo').classList.add('hidden');
     document.getElementById('resultsPanel').classList.remove('hidden');
     document.getElementById('emptyState').classList.add('hidden');
-
     // Update scores
-    document.getElementById('overallScore').textContent = data.scores.overall;
+    document.getElementById('overallScore').textContent = data.overall_score || data.scores && data.scores.overall || 0;
     document.getElementById('technicalScore').textContent = data.scores.technical;
     document.getElementById('contentScore').textContent = data.scores.content;
     document.getElementById('structureScore').textContent = data.scores.structure;
@@ -279,7 +278,7 @@ function displayResults(data) {
     document.getElementById('linkBar').style.width = data.scores.links + '%';
 
     // Score message
-    const score = data.scores.overall;
+    const score = data.overall_score || data.scores && data.scores.overall || 0;
     let message = '';
     if (score >= 80) message = '✅ Excellent SEO performance!';
     else if (score >= 60) message = '🟡 Good SEO, but room for improvement';
@@ -365,18 +364,29 @@ document.getElementById('confirmSave').addEventListener('click', async () => {
     const description = document.getElementById('reportDescription').value;
 
     try {
-        const response = await fetch(`/api/reports/${currentReportId}/save/`, {
+        // If user previewed but didn't save to DB, we'll create a new persistent report
+        // by invoking the analyze endpoint, which persists the analysis and returns an id.
+        const url = document.getElementById('url').value;
+        const keywords = document.getElementById('keywords').value.split(',').map(k => k.trim()).filter(k => k);
+        const useAI = document.getElementById('useAI').checked;
+
+        const response = await fetch('/api/reports/analyze/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': getCookie('csrftoken')
             },
-            body: JSON.stringify({ name, description })
+            body: JSON.stringify({ url, keywords, include_ai: useAI })
         });
 
+        const data = await response.json();
         if (response.ok) {
-            alert('Report saved successfully!');
+            currentReportId = data.id;
+            // Poll for the persisted report to complete
+            pollForResults(data.id);
             document.getElementById('saveModal').classList.add('hidden');
+        } else {
+            alert('Failed to save report: ' + (data.detail || JSON.stringify(data)));
         }
     } catch (error) {
         alert('Failed to save report: ' + error.message);
@@ -385,6 +395,10 @@ document.getElementById('confirmSave').addEventListener('click', async () => {
 
 // Export PDF
 document.getElementById('exportBtn').addEventListener('click', async () => {
+    if (!currentReportId) {
+        alert('Please save the report before exporting.');
+        return;
+    }
     window.location.href = `/api/reports/${currentReportId}/export_pdf/`;
 });
 

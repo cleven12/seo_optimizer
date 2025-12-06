@@ -77,6 +77,51 @@ def transform_analysis_report(report) -> Dict[str, Any]:
     Returns:
         Formatted analysis result
     """
+    def _to_primitive(obj):
+        """Convert common analysis dataclass objects into primitives recursively.
+
+        This helper supports the specific data models returned by the analyzer
+        (ClusterScore, KeywordScore and nested structures) and falls back to
+        converting objects via __dict__ or repr string for unknown types.
+        """
+        # Primitives
+        if obj is None or isinstance(obj, (str, bool, int, float)):
+            return obj
+        # Dates & datetimes
+        import datetime as _dt
+        if isinstance(obj, (_dt.datetime, _dt.date)):
+            try:
+                return obj.isoformat()
+            except Exception:
+                return str(obj)
+        if isinstance(obj, list):
+            return [_to_primitive(x) for x in obj]
+        if isinstance(obj, dict):
+            return {k: _to_primitive(v) for k, v in obj.items()}
+
+        # Known analyzer objects
+        if hasattr(obj, 'keyword') and hasattr(obj, 'score'):
+            return {
+                'keyword': getattr(obj, 'keyword', None),
+                'score': getattr(obj, 'score', None)
+            }
+
+        if hasattr(obj, 'cluster_score') and hasattr(obj, 'keywords'):
+            result = {
+                'keywords': getattr(obj, 'keywords', None),
+                'cluster_score': getattr(obj, 'cluster_score', None)
+            }
+            if hasattr(obj, 'individual_scores'):
+                result['individual_scores'] = _to_primitive(getattr(obj, 'individual_scores'))
+            return result
+
+        # Fallback to introspecting attrs
+        try:
+            attrs = {k: v for k, v in obj.__dict__.items() if not k.startswith('_')}
+            return {k: _to_primitive(v) for k, v in attrs.items()}
+        except Exception:
+            return str(obj)
+
     # Extract scores
     overall_score = report.overall_score
     
@@ -116,7 +161,7 @@ def transform_analysis_report(report) -> Dict[str, Any]:
         technical_details = {
             'score': report.technical_seo.score,
             'status': report.technical_seo.status,
-            'details': report.technical_seo.details or {},
+            'details': _to_primitive(report.technical_seo.details or {}),
             'recommendations': report.technical_seo.recommendations or [],
         }
     
@@ -125,7 +170,7 @@ def transform_analysis_report(report) -> Dict[str, Any]:
         content_details = {
             'score': report.content_analysis.score,
             'status': report.content_analysis.status,
-            'details': report.content_analysis.details or {},
+            'details': _to_primitive(report.content_analysis.details or {}),
             'recommendations': report.content_analysis.recommendations or [],
         }
     
@@ -134,7 +179,7 @@ def transform_analysis_report(report) -> Dict[str, Any]:
         structure_details = {
             'score': report.structure_analysis.score,
             'status': report.structure_analysis.status,
-            'details': report.structure_analysis.details or {},
+            'details': _to_primitive(report.structure_analysis.details or {}),
             'recommendations': report.structure_analysis.recommendations or [],
         }
     
@@ -143,7 +188,7 @@ def transform_analysis_report(report) -> Dict[str, Any]:
         link_details = {
             'score': report.link_analysis.score,
             'status': report.link_analysis.status,
-            'details': report.link_analysis.details or {},
+            'details': _to_primitive(report.link_analysis.details or {}),
             'recommendations': report.link_analysis.recommendations or [],
         }
     
@@ -151,7 +196,7 @@ def transform_analysis_report(report) -> Dict[str, Any]:
     if hasattr(report, 'ai_analysis') and report.ai_analysis:
         ai_recommendations = report.ai_analysis.recommendations or []
     
-    return {
+    result = {
         'url': report.url,
         'title': getattr(report, 'title', ''),
         'overall_score': overall_score,
@@ -167,6 +212,9 @@ def transform_analysis_report(report) -> Dict[str, Any]:
         'link_details': link_details,
         'ai_recommendations': ai_recommendations,
     }
+
+    # Ensure entire response is JSON-friendly (no dataclasses or objects)
+    return _to_primitive(result)
 
 
 def generate_pdf_report(report_obj) -> bytes:
