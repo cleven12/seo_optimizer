@@ -1,0 +1,420 @@
+┌──(venv)─(nevelc㉿vivo)-[~/Private/repo/seo_optimizer]
+└─$ python main.py -u http://localhost/ -k ["VISIT KILI ADVENTURES","Kilimanjaro Trekking Tours","Mount Meru Climbing Packages","Moshi & Arusha Day Trips"] --ai
+Downloading NLTK data...
+Fetching content from http://localhost/...
+
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Analyzing: http://localhost/                                                                                                        │
+│ Focus Keywords: "[VISIT KILI ADVENTURES", "Kilimanjaro Trekking Tours", "Mount Meru Climbing Packages", "Moshi & Arusha Day Trips]" │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                                                        📊 SEO ANALYSIS REPORT                                                                         
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 OVERALL SEO SCORE: 55/100
+
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Keyword Cluster Performance: 27/100                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+📈 Individual Keyword Scores:
+
+✅ "[VISIT KILI ADVENTURES" - 80/100
+   ├─ Title: ✓ Yes
+   ├─ Meta: ✗ No
+   ├─ H1: ✓ Yes
+   ├─ Density: 1.0%
+   └─ First 100 words: ✓ Yes
+      💡 Add '[VISIT KILI ADVENTURES' to meta description
+      💡 Increase keyword density (currently 1.0%)
+
+❌ "Kilimanjaro Trekking Tours" - 10/100
+   ├─ Title: ✗ No
+   ├─ Meta: ✗ No
+   ├─ H1: ✗ No
+   ├─ Density: 0.0%
+   └─ First 100 words: ✗ No
+      💡 Add 'Kilimanjaro Trekking Tours' to title tag
+      💡 Add 'Kilimanjaro Trekking Tours' to meta description
+
+❌ "Mount Meru Climbing Packages" - 10/100
+   ├─ Title: ✗ No
+   ├─ Meta: ✗ No
+   ├─ H1: ✗ No
+   ├─ Density: 0.0%
+   └─ First 100 words: ✗ No
+      💡 Add 'Mount Meru Climbing Packages' to title tag
+      💡 Add 'Mount Meru Climbing Packages' to meta description
+
+❌ "Moshi & Arusha Day Trips]" - 10/100
+   ├─ Title: ✗ No
+   ├─ Meta: ✗ No
+   ├─ H1: ✗ No
+   ├─ Density: 0.0%
+   └─ First 100 words: ✗ No
+      💡 Add 'Moshi & Arusha Day Trips]' to title tag
+      💡 Add 'Moshi & Arusha Day Trips]' to meta description
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ Technical SEO: 62/100
+
+⚠️ Content Analysis: 62/100
+
+✅ Structure: 100/100
+
+✅ Links: 100/100
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🤖 AI-POWERED SEO INSIGHTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 AI-Optimized Title:
+   VISIT KILI ADVENTURES | Kilimanjaro, Meru & Arusha Day Trips
+
+📄 AI-Optimized Meta Description:
+   VISIT KILI ADVENTURES offers expert-guided Kilimanjaro Trekking Tours with 95% summit success. Explore Mount Meru Climbing Packages & day trips. Book your 
+adventure!
+
+📊 Content Quality Analysis:
+   ├─ Readability: 9/10
+   ├─ Engagement: 9/10
+   └─ Content Value: 9/10
+
+✍️  Grammar & Readability (SEO-Safe):
+   ├─ Grammar Score: 7/10
+   ├─ Issues Found: 7
+   └─ SEO Keywords Preserved: ✓ Yes
+
+   Improved Title (Keywords Preserved):
+   Best Kilimanjaro Climbing Agency 2025 | Mount Kilimanjaro Climb Cost & Routes - VISIT KILI ADVENTURES
+
+   Improved Meta Description (Keywords Preserved):
+   A leading Kilimanjaro climbing agency offering affordable Mount Kilimanjaro climb packages. Explore the best time to climb Kilimanjaro, climbing costs, difficulty, 
+duration, gear lists, and charity climbs. Book your 2025/2026 Kilimanjaro trek today!
+
+   Grammar Fixes:
+   • Rephrase fragmented statements and lists (e.g., '95% Summit Success Rate • Expert Local Guides') into complete sentences or structured bullet points for improved 
+clarity. For example, 'We pride ourselves on a 95% summit success rate, supported by our expert local guides.'
+   • Integrate standalone phrases and incomplete sentences (e.g., 'Mount Kilimanjaro 2025/2026 Expert-guided Kilimanjaro climbs...' and 'Trusted & Verified Tour 
+Operator Approved supply partner...') into grammatically complete and flowing sentences. For instance, 'For your Mount Kilimanjaro 2025/2026 adventure, experience 
+expert-guided climbs with proven summit success rates.' and 'We are a trusted and verified tour operator, approved as a supply partner on leading travel platforms.'
+   • Ensure all sentences and thoughts are complete and flow logically, particularly in descriptions that appear truncated (e.g., 'and high …') or where headings blend
+with introductory sentences (e.g., 'Featured Kilimanjaro Tours Explore our most popular routes...').
+
+   Readability Tips:
+   • Utilize clear headings and subheadings (e.g., 'Featured Kilimanjaro Tours') to segment content effectively and enhance scannability, making it easier for readers 
+to navigate different sections of information.
+   • Employ bullet points for presenting lists of features, statistics, or benefits (e.g., '95%+ Summit Success', '2000+ Happy Climbers') to improve visual 
+organization and allow for quicker digestion of key information.
+
+💡 AI Recommendations:
+   1. Integrate the exact phrase "Mount Meru Climbing Packages" into the webpage's body content, ideally within a new dedicated section or paragraph, to address its 
+complete absence and signal this service to search engines.
+   2. Add a new section or paragraph to the webpage's body content specifically detailing "Moshi & Arusha Day Trips", incorporating the exact keyword phrase to target 
+users searching for these local excursions.
+   3. Revise the existing Meta Description to include "Mount Meru Climbing Packages" and "Moshi & Arusha Day Trips" alongside Kilimanjaro offerings, making it more 
+comprehensive and improving click-through rates for these specific searches.
+   4. Incorporate the exact keyword phrase "Kilimanjaro Trekking Tours" naturally into the body text, for example, in introductory paragraphs or service descriptions, 
+to enhance its prominence beyond just 'climb' or 'trek'.
+   5. Create new H2 or H3 subheadings within the main content for "Mount Meru Climbing Packages" and "Moshi & Arusha Day Trips" to improve content structure, 
+readability, and keyword visibility for these distinct services.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 TOP RECOMMENDATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. 🔴 Add 'Kilimanjaro Trekking Tours' to title tag
+2. 🔴 Add 'Mount Meru Climbing Packages' to title tag
+3. 🔴 Title is too long (101 chars), aim for 50-60
+4. 🔴 Meta description too long (250 chars), aim for 150-160
+5. 🔴 Improve keyword density (currently 0.2%)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                                                                                                                                                                       
+┌──(venv)─(nevelc㉿vivo)-[~/Private/repo/seo_optimizer]
+└─$ python main.py -u http://localhost/ -k ["VISIT KILI ADVENTURES","Kilimanjaro Trekking Tours","Mount Meru Climbing Packages","Moshi & Arusha Day Trips"] --ai
+Downloading NLTK data...
+Fetching content from http://localhost/...
+
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Analyzing: http://localhost/                                                                                                        │
+│ Focus Keywords: "[VISIT KILI ADVENTURES", "Kilimanjaro Trekking Tours", "Mount Meru Climbing Packages", "Moshi & Arusha Day Trips]" │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                                                        📊 SEO ANALYSIS REPORT                                                                         
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 OVERALL SEO SCORE: 80/100
+
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Keyword Cluster Performance: 68/100                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+📈 Individual Keyword Scores:
+
+✅ "[VISIT KILI ADVENTURES" - 95/100
+   ├─ Title: ✓ Yes
+   ├─ Meta: ✓ Yes
+   ├─ H1: ✓ Yes
+   ├─ Density: 1.1%
+   └─ First 100 words: ✓ Yes
+
+⚠️ "Kilimanjaro Trekking Tours" - 70/100
+   ├─ Title: ✗ No
+   ├─ Meta: ✓ Yes
+   ├─ H1: ✓ Yes
+   ├─ Density: 0.7%
+   └─ First 100 words: ✓ Yes
+      💡 Add 'Kilimanjaro Trekking Tours' to title tag
+      💡 Increase keyword density (currently 0.7%)
+
+⚠️ "Mount Meru Climbing Packages" - 68/100
+   ├─ Title: ✗ No
+   ├─ Meta: ✓ Yes
+   ├─ H1: ✓ Yes
+   ├─ Density: 0.5%
+   └─ First 100 words: ✓ Yes
+      💡 Add 'Mount Meru Climbing Packages' to title tag
+      💡 Increase keyword density (currently 0.5%)
+
+❌ "Moshi & Arusha Day Trips]" - 40/100
+   ├─ Title: ✗ No
+   ├─ Meta: ✓ Yes
+   ├─ H1: ✗ No
+   ├─ Density: 0.0%
+   └─ First 100 words: ✓ Yes
+      💡 Add 'Moshi & Arusha Day Trips]' to title tag
+      💡 Include 'Moshi & Arusha Day Trips]' in H1 heading
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Technical SEO: 90/100
+
+⚠️ Content Analysis: 78/100
+
+✅ Structure: 100/100
+
+✅ Links: 100/100
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🤖 AI-POWERED SEO INSIGHTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 AI-Optimized Title:
+   VISIT KILI ADVENTURES | Kilimanjaro, Meru & Arusha Day Trips
+
+📄 AI-Optimized Meta Description:
+   VISIT KILI ADVENTURES: Expert Kilimanjaro Trekking Tours, Mount Meru Climbing Packages & Moshi & Arusha Day Trips. Achieve 95% summit success. Book now!
+
+📊 Content Quality Analysis:
+   ├─ Readability: 8/10
+   ├─ Engagement: 8/10
+   └─ Content Value: 6/10
+
+✍️  Grammar & Readability (SEO-Safe):
+   ├─ Grammar Score: 5/10
+   ├─ Issues Found: 7
+   └─ SEO Keywords Preserved: ✓ Yes
+
+   Improved Title (Keywords Preserved):
+   VISIT KILI ADVENTURES | Kilimanjaro, Meru & Arusha Trips
+
+   Improved Meta Description (Keywords Preserved):
+   VISIT KILI ADVENTURES offers expert Kilimanjaro Trekking Tours, Mount Meru Climbing Packages, and Moshi & Arusha Day Trips. Achieve 95% summit success; book your 
+2025/2026 adventure today!
+
+   Grammar Fixes:
+   • Rewrite fragmented phrases in the meta description into complete, flowing sentences to improve professionalism and clarity. For example, combine '95% summit 
+success. Book 2025/2026!' into a single, cohesive statement.
+   • Restructure the initial body content (e.g., 'VISIT KILI ADVENTURES | Kilimanjaro, Meru & Arusha Trips 95% Summit Success Rate...') from a jumbled series of 
+taglines and repeated headings into proper, flowing sentences or a clearly formatted introduction to enhance readability and professional appearance, while integrating
+keywords naturally.
+   • Format lists of features and statistics (e.g., '95%+ Summit Success 2000+ Happy Climbers 15+ Years Experience...') into bullet points or complete sentences to 
+make them easier to read and digest, rather than presenting them as a continuous block of text.
+
+   Readability Tips:
+   • Break down dense text blocks containing multiple facts or features into easily scannable bullet points or shorter, distinct sentences. This improves the visual 
+appeal and allows readers to quickly grasp key information.
+   • Ensure clear separation between headings and descriptive text. For instance, 'Featured Kilimanjaro Tours Explore our most popular routes...' should be clearly 
+delineated, with the heading followed by a complete, separate sentence.
+
+💡 AI Recommendations:
+   1. Increase the natural density and prominence of "Kilimanjaro Trekking Tours" and "Mount Meru Climbing Packages" within H2 and H3 subheadings and body paragraphs, 
+ensuring they flow organically throughout the content to improve depth and relevance for these core offerings.
+   2. Develop dedicated, keyword-rich sections on the homepage for each main service, specifically for "Kilimanjaro Trekking Tours," "Mount Meru Climbing Packages," 
+and "Moshi & Arusha Day Trips." Each section should include detailed descriptions, unique selling points, and relevant sub-keywords to enhance content breadth.
+   3. Optimize all relevant image alt attributes and filenames to include target keywords like "Kilimanjaro Trekking Tours," "Mount Meru Climbing Packages," and "Moshi
+& Arusha Day Trips." For instance, use alt text like "Stunning views from Kilimanjaro Trekking Tours" and filenames like "mount-meru-climbing-packages.jpg."
+   4. Implement Schema.org markup (e.g., `LocalBusiness`, `Tour`, or `Trip`) to explicitly define "VISIT KILI ADVENTURES" and detail the offerings of "Kilimanjaro 
+Trekking Tours," "Mount Meru Climbing Packages," and "Moshi & Arusha Day Trips." This can improve rich snippet visibility in search results.
+   5. Add an FAQ (Frequently Asked Questions) section to the page that answers common queries incorporating long-tail variations of the target keywords, such as "What 
+are the best Kilimanjaro Trekking Tours routes?" or "What's included in Mount Meru Climbing Packages?" and "Popular activities on Moshi & Arusha Day Trips?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 TOP RECOMMENDATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. 🔴 Add 'Moshi & Arusha Day Trips]' to title tag
+2. 🔴 Add 'Mount Meru Climbing Packages' to title tag
+3. 🔴 Improve keyword density (currently 0.6%)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                                                                                                                                                                       
+┌──(venv)─(nevelc㉿vivo)-[~/Private/repo/seo_optimizer]
+└─$ nmcli dev wifi show-password     
+SSID: Infinix Hot 30
+Security: WPA
+Password: _11111111_.
+
+  █████████████████████████████████
+  ██ ▄▄▄▄▄ █▀ █▀▀█▄▀▀ ▄▄▄█ ▄▄▄▄▄ ██
+  ██ █   █ █▀ ▄ █▀▄ ▀▀█▀██ █   █ ██
+  ██ █▄▄▄█ █▀█ █▄█▄▀▀███▄█ █▄▄▄█ ██
+  ██▄▄▄▄▄▄▄█▄█▄█ █ ▀▄█ █▄█▄▄▄▄▄▄▄██
+  ██ ▄   ▀▄   ▄█▄▄▀▄▄▄ ▀█▄▀▄▀▄▀ ███
+  ███▄▄▀▀ ▄█  ▀ ▄█▀ ▄█ ██  ▄▀▄█▀▀██
+  ██▄█ █▀█▄▀█ ▀▄▀▀ ▄▄▄▄  ▀█  ▄ ▀███
+  ██▀ ▀▀ ▄▄▄  ▀█▀▄  ▄▄▄█▄▄▄▄█▀▄████
+  ██ ▀▄▀ ▀▄▀  ▄█▄ █▄▄▄▄ ▀▀▀▄▀ █ ▄██
+  ██ █ ▀ █▄▄▀▀█ ▄▄▄ ▄█ ▀▀▀ ▄ ███▀██
+  ██▄██▄▄▄▄▄▀█▄▄▀ ▀▄▄ ▄▄ ▄▄▄ ▄ ████
+  ██ ▄▄▄▄▄ █▄▄▀█▀▄▀▄ ▄▄  █▄█ ▀▄█▀██
+  ██ █   █ █ ▄▀█▄ ▀▀ ██▀▄▄▄▄  █  ██
+  ██ █▄▄▄█ █ ▀▄ ▄▄▀▄██ █ ▄▄▄  ▄ ███
+  ██▄▄▄▄▄▄▄█▄▄▄▄▄███▄▄▄▄█▄▄█▄▄█████
+  ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+
+                                                                                                                                                                       
+┌──(venv)─(nevelc㉿vivo)-[~/Private/repo/seo_optimizer]
+└─$ python main.py -u http://localhost/ -k ["VISIT KILI ADVENTURES","Kilimanjaro Trekking Tours","Mount Meru Climbing Packages","Moshi & Arusha Day Trips"] --ai
+Downloading NLTK data...
+Fetching content from http://localhost/...
+
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Analyzing: http://localhost/                                                                                                        │
+│ Focus Keywords: "[VISIT KILI ADVENTURES", "Kilimanjaro Trekking Tours", "Mount Meru Climbing Packages", "Moshi & Arusha Day Trips]" │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                                                        📊 SEO ANALYSIS REPORT                                                                         
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 OVERALL SEO SCORE: 83/100
+
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Keyword Cluster Performance: 73/100                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+📈 Individual Keyword Scores:
+
+✅ "[VISIT KILI ADVENTURES" - 95/100
+   ├─ Title: ✓ Yes
+   ├─ Meta: ✓ Yes
+   ├─ H1: ✓ Yes
+   ├─ Density: 1.1%
+   └─ First 100 words: ✓ Yes
+
+✅ "Kilimanjaro Trekking Tours" - 95/100
+   ├─ Title: ✓ Yes
+   ├─ Meta: ✓ Yes
+   ├─ H1: ✓ Yes
+   ├─ Density: 1.5%
+   └─ First 100 words: ✓ Yes
+
+❌ "Mount Meru Climbing Packages" - 59/100
+   ├─ Title: ✗ No
+   ├─ Meta: ✓ Yes
+   ├─ H1: ✗ No
+   ├─ Density: 0.9%
+   └─ First 100 words: ✓ Yes
+      💡 Add 'Mount Meru Climbing Packages' to title tag
+      💡 Include 'Mount Meru Climbing Packages' in H1 heading
+
+❌ "Moshi & Arusha Day Trips]" - 45/100
+   ├─ Title: ✗ No
+   ├─ Meta: ✓ Yes
+   ├─ H1: ✗ No
+   ├─ Density: 0.0%
+   └─ First 100 words: ✓ Yes
+      💡 Add 'Moshi & Arusha Day Trips]' to title tag
+      💡 Include 'Moshi & Arusha Day Trips]' in H1 heading
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ Technical SEO: 75/100
+
+✅ Content Analysis: 95/100
+
+✅ Structure: 100/100
+
+✅ Links: 100/100
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🤖 AI-POWERED SEO INSIGHTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 AI-Optimized Title:
+   VISIT KILI ADVENTURES | Kilimanjaro, Meru, Moshi & Arusha Trips
+
+📄 AI-Optimized Meta Description:
+   VISIT KILI ADVENTURES: Expert Kilimanjaro Trekking Tours, Mount Meru Climbing Packages & Moshi & Arusha Day Trips. 95% summit success! Book your adventure today!
+
+📊 Content Quality Analysis:
+   ├─ Readability: 9/10
+   ├─ Engagement: 8/10
+   └─ Content Value: 7/10
+
+✍️  Grammar & Readability (SEO-Safe):
+   ├─ Grammar Score: 7/10
+   ├─ Issues Found: 5
+   └─ SEO Keywords Preserved: ✓ Yes
+
+   Improved Title (Keywords Preserved):
+   VISIT KILI ADVENTURES | Kilimanjaro Trekking Tours, Meru Packages & Arusha Trips
+
+   Improved Meta Description (Keywords Preserved):
+   VISIT KILI ADVENTURES offers expert Kilimanjaro Trekking Tours, Mount Meru Climbing Packages, and Moshi & Arusha Day Trips. Achieve 95% summit success! Book your 
+2025/2026 adventure today.
+
+   Grammar Fixes:
+   • Correct the truncated keyword: 'VISIT KILI AD' should be completed to 'VISIT KILI ADVENTURES' in the body content to preserve the full keyword and ensure 
+grammatical correctness.
+   • Integrate fragmented sentences in the meta description: Phrases like '95% summit success. Book 2025/2026!' should be rephrased into complete, engaging sentences.
+   • Address inconsistent keyword usage: Ensure 'Moshi & Arusha Day Trips' is used consistently across all content, including the meta description, instead of 
+'Moshi-Arusha Day Trips'.
+
+   Readability Tips:
+   • Improve content flow and reduce redundancy: The opening lines of the body content repeat similar phrases and structures. Consider using unique sentences or clear 
+bullet points to present key information like '95% Summit Success Rate' and 'Expert Local Guides' instead of stringing them with pipe symbols.
+   • Utilize paragraphing and lists effectively: Break down long lists of features or benefits (e.g., '95%+ Summit Success 2000+ Happy Climbers...') into smaller, 
+digestible paragraphs or actual bullet points for easier scanning and comprehension.
+
+💡 AI Recommendations:
+   1. Address technical SEO issues impacting Core Web Vitals (LCP, FID, CLS) to improve user experience and search ranking, directly targeting the 75/100 Technical SEO
+score.
+   2. Standardize the exact phrase "Mount Meru Climbing Packages" in the HTML title tag and H1 heading to enhance keyword matching and relevance.
+   3. Ensure consistent use of the exact target keyword "Moshi & Arusha Day Trips" in both the HTML title tag and H1 heading.
+   4. Optimize H2 and H3 subheadings throughout the content by incorporating full target keywords and their variations (e.g., "Kilimanjaro Trekking Tours Routes", 
+"Mount Meru Climbing Packages Details", "Popular Moshi & Arusha Day Trips").
+   5. Implement structured data using Schema.org markup (e.g., Tour or LocalBusiness with Offer properties) to explicitly describe your "Kilimanjaro Trekking Tours", 
+"Mount Meru Climbing Packages", and "Moshi & Arusha Day Trips" to improve search engine understanding and rich snippet potential.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 TOP RECOMMENDATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. 🔴 Add 'Moshi & Arusha Day Trips]' to title tag
+2. 🔴 Add 'Mount Meru Climbing Packages' to title tag
+3. 🔴 Title is too long (80 chars), aim for 50-60
+4. 🔴 Improve keyword density (currently 0.9%)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+                                                                                                                                                                       
+┌──(venv)─(nevelc㉿vivo)-[~/Private/repo/seo_optimizer]
+└─$ 
