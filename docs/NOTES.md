@@ -8,6 +8,8 @@ A powerful Python CLI tool that analyzes web content for SEO optimization based 
 - **2025-11-24**: Integrated AI-powered recommendations using Google Gemini (free) and OpenAI
 - **2025-11-24**: Updated to support both Gemini and OpenAI for flexibility
 - **2025-11-24**: Configured for keyword-focused SEO analysis
+  *********************
+ - **YEAR-MON-DATE**: Short Description
 
 ## Project Architecture
 
