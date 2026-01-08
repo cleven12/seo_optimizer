@@ -1,4 +1,35 @@
-# Release Notes - v2.1.0: AI Flexibility with Gemini & OpenAI
+# Release Notes
+
+## v2.1.1: Enhanced Developer Experience & Documentation
+
+**Released:** January 8, 2026
+
+### New Additions
+
+#### Contributing Guidelines
+- Added comprehensive CONTRIBUTING.md with detailed guidelines
+- Development setup instructions and prerequisites
+- Code style guide with examples and best practices
+- Testing guidelines with pytest examples
+- Commit message format using Conventional Commits
+- Pull request checklist for contributors
+- Security guidelines for safe development
+
+#### Improvements
+- Enhanced documentation structure for better contributor onboarding
+- Clear project structure overview
+- Quick contribution checklist for PRs
+- Recognition section for contributors
+
+### Developer Experience
+- Detailed environment setup instructions
+- Code example templates for consistent style
+- Testing framework documentation
+- Performance and security considerations
+
+---
+
+## v2.1.0: AI Flexibility with Gemini & OpenAI
 
 **Released:** November 24, 2025
 
