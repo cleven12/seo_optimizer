@@ -7,12 +7,24 @@ from src.output.cli_renderer import render_report, show_progress
 from src.output.json_exporter import export_to_json
 from src.utils.text_utils import ensure_nltk_data
 
+__version__ = "2.2.0"
+
 console = Console()
 
 def app():
     parser = argparse.ArgumentParser(
         description='SEO Analyzer - Analyze web content for SEO optimization',
-        formatter_class=argparse.RawDescriptionHelpFormatter
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=(
+            "Support the project: https://snippe.me/pay/support-cleven\n"
+            "Docs & issues: https://github.com/cleven12/seo_optimizer"
+        ),
+    )
+
+    parser.add_argument(
+        '--version',
+        action='version',
+        version=f'SEO Analyzer {__version__}',
     )
     
     parser.add_argument(
