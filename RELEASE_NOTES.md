@@ -1,5 +1,49 @@
 # Release Notes
 
+## v2.2.0: 20 Stars Milestone — CI, Dependabot & Community
+
+**Released:** August 3, 2026  
+**Branch:** `release/v2.2.0-20-stars`
+
+Thank you for **20+ GitHub stars**. This release hardens the project for contributors and long-term maintenance so more people can trust and adopt SEO Analyzer.
+
+### Highlights
+
+#### GitHub automation (`.github/`)
+- **CI workflow** (`ci.yml`): lint/compile + pytest on Python 3.9–3.12 for pushes and pull requests on `main`, `release/**`, and `feature/**`
+- **CLI smoke job**: verifies `main.py --help` and `--version`
+- **Dependabot** (`dependabot.yml`): weekly updates for `pip` and `github-actions` (opened by `@dependabot[bot]`)
+- **Daily Maintenance** (`daily-maintenance.yml`): scheduled 09:00 UTC activity log + `workflow_dispatch`
+- **FUNDING.yml**: support link for sponsors and fans
+- **Issue & PR templates**: faster bug reports and feature requests
+
+#### Product / DX
+- CLI **`--version`** (`SEO Analyzer 2.2.0`)
+- Real unit tests under `src/tests/` (validation, scoring, fetcher, keywords, analyzers)
+- `requirements-dev.txt` for pytest in local and CI environments
+- README badges (CI + Support) and clearer support section
+
+#### Support anyone interested
+- Primary support link: **[https://snippe.me/pay/support-cleven](https://snippe.me/pay/support-cleven)**
+- Also available via the GitHub **Sponsor / Fund** button (custom funding URL)
+
+### How to try this branch
+
+```bash
+git fetch origin
+git checkout release/v2.2.0-20-stars
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt -r requirements-dev.txt
+pytest src/tests -v
+python main.py --version
+```
+
+### Upgrade notes
+- No breaking CLI changes from v2.1.x
+- CI expects Python **3.9+** in the matrix (3.8 may still work locally but is not CI-tested)
+
+---
+
 ## v2.1.1: Enhanced Developer Experience & Documentation
 
 **Released:** January 8, 2026
@@ -221,7 +265,7 @@ Found a bug? Want to contribute? Open an issue or PR!
 
 ## Support
 
-- **Email:** [cleven@gmail.com](clevengodsontech@gmail.com)
+- **Support the project:** [https://snippe.me/pay/support-cleven](https://snippe.me/pay/support-cleven)
 - **Discussions:** [GitHub Discussions](https://github.com/cleven12/seo_optimizer/discussions)
 - **Twitter:** [@cleven02](https://twitter.com/cleven02)
 

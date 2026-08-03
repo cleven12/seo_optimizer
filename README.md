@@ -2,17 +2,21 @@
 
 <div align="center">
 
-[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python Version](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/cleven12/seo_optimizer/actions/workflows/ci.yml/badge.svg)](https://github.com/cleven12/seo_optimizer/actions/workflows/ci.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/cleven12/seo_optimizer/graphs/commit-activity)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![GitHub stars](https://img.shields.io/github/stars/cleven12/seo_optimizer?style=social)](https://github.com/cleven12/seo_optimizer)
 [![Twitter Follow](https://img.shields.io/twitter/follow/cleven02?style=social)](https://twitter.com/cleven02)
+[![Support](https://img.shields.io/badge/Support-Snippe-ff69b4)](https://snippe.me/pay/support-cleven)
+
+**🎉 Milestone: 20+ GitHub stars — thank you!** · **v2.2.0** with CI, Dependabot, and daily maintenance
 
 **A powerful Python CLI tool that combines traditional SEO analysis with cutting-edge AI to optimize your web content for search engines. Get actionable insights, AI-powered recommendations, and grammar-safe content improvements.**
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [AI Features](#-ai-powered-features) • [Documentation](#-documentation) • [Contributing](#-contributing)
+[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [AI Features](#-ai-powered-features) • [Documentation](#-documentation) • [Contributing](#-contributing) • [Support the project](#show-your-support)
 
 </div>
 
@@ -550,7 +554,7 @@ Focus Keywords: "python tutorial", "learn python", "python for beginners"
 ### Command Line Reference
 
 ```bash
-usage: main.py [-h] -u URL -k KEYWORDS [-o OUTPUT] [-v] [--ai]
+usage: main.py [-h] [--version] -u URL -k KEYWORDS [-o OUTPUT] [-v] [--ai]
 
 SEO Analyzer - AI-Powered Content Optimization Tool
 
@@ -561,6 +565,7 @@ required arguments:
 
 optional arguments:
   -h, --help            Show this help message and exit
+  --version             Show version (v2.2.0) and exit
   -o, --output OUTPUT   JSON output file path
   -v, --verbose         Show detailed analysis
   --ai                  Enable AI-powered recommendations (requires API key)
@@ -585,6 +590,9 @@ optional arguments:
 - [x] AI-powered recommendations (Gemini & OpenAI)
 - [x] Grammar analysis (SEO-safe)
 - [x] Content quality evaluation
+- [x] GitHub Actions CI (multi-Python matrix)
+- [x] Dependabot + daily maintenance workflows
+- [x] CLI `--version` and contributor issue templates
 
 ### In Progress
 - [ ] Google Search Console integration
@@ -689,24 +697,27 @@ in the Software without restriction...
 - **Found a bug?** [Open an issue](https://github.com/cleven12/seo_optimizer/issues/new?template=bug_report.md)
 - **Have a feature request?** [Open an issue](https://github.com/cleven12/seo_optimizer/issues/new?template=feature_request.md)
 - **Have a question?** [Start a discussion](https://github.com/cleven12/seo_optimizer/discussions)
-- **Need direct support?** Email: support@example.com
+- **Need direct support?** Open a GitHub issue or discussion — we read them
 
 ### Community
 
-- [Join our Discord](https://discord.gg/seo-optimizer)
-- [Follow on Twitter](https://twitter.com/cleven02)
-- [YouTube Tutorials](https://youtube.com/@cleven)
+- [Follow on Twitter / X](https://twitter.com/cleven02)
+- [GitHub Discussions](https://github.com/cleven12/seo_optimizer/discussions)
 
 ---
 
 ## Show Your Support
 
-If you find this project useful, please consider:
+If this tool helps you rank better or ship content faster, you can:
 
-- **Starring the repository**
-- **Sharing on social media**
-- **Telling your friends**
-- **Buying me a coffee**: [https://buymeacoffee.com/cleven](https://buymeacoffee.com/cleven)
+- **Star the repository** — helps more people discover SEO Analyzer
+- **Share** on LinkedIn, X, or your newsletter
+- **Open a PR** or improve docs (see [CONTRIBUTING.md](CONTRIBUTING.md))
+- **Support development financially** (optional, any amount appreciated):
+
+  **→ [https://snippe.me/pay/support-cleven](https://snippe.me/pay/support-cleven)**
+
+  Your support funds maintenance, AI feature work, and open-source docs. Thank you to everyone who starred us past **20 stars** — this release is for you.
 
 ---
 

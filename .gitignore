@@ -56,6 +56,7 @@ reports/
 
 # Logs
 *.log
+!/.github/activity.log
 logs/
 
 # OS generated files

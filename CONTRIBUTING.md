@@ -68,15 +68,20 @@ python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk
 ### Running Tests
 
 ```bash
+# Install dev dependencies
+pip install -r requirements-dev.txt
+
 # Run all tests
-pytest
+pytest src/tests -v
 
 # Run with coverage
-pytest --cov=src --cov-report=html
+pytest src/tests --cov=src --cov-report=html
 
-# Run specific test file
-pytest tests/test_analyzer.py
+# Run a specific test file
+pytest src/tests/test_scoring.py -v
 ```
+
+CI runs the same suite on every pull request (see `.github/workflows/ci.yml`).
 
 ### Code Style
 
