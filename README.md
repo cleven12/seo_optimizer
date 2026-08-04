@@ -9,8 +9,14 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/cleven12/seo_optimizer/graphs/commit-activity)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![GitHub stars](https://img.shields.io/github/stars/cleven12/seo_optimizer?style=social)](https://github.com/cleven12/seo_optimizer)
+![GitHub repo size](https://img.shields.io/github/repo-size/cleven12/seo_optimizer)
+![GitHub contributors](https://img.shields.io/github/contributors/cleven12/seo_optimizer)
+![GitHub issues](https://img.shields.io/github/issues/cleven12/seo_optimizer)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/cleven12/seo_optimizer)
+![GitHub last commit](https://img.shields.io/github/last-commit/cleven12/seo_optimizer)
 [![Twitter Follow](https://img.shields.io/twitter/follow/cleven02?style=social)](https://twitter.com/cleven02)
 [![Support](https://img.shields.io/badge/Support-Snippe-ff69b4)](https://snippe.me/pay/support-cleven)
+
 
 **🎉 Milestone: 20+ GitHub stars — thank you!** · **v2.2.0** with CI, Dependabot, and daily maintenance
 
