@@ -18,8 +18,6 @@
 [![Support](https://img.shields.io/badge/Support-Snippe-ff69b4)](https://snippe.me/pay/support-cleven)
 
 
-**🎉 Milestone: 20+ GitHub stars — thank you!** · **v2.2.0** with CI, Dependabot, and daily maintenance
-
 **A powerful Python CLI tool that combines traditional SEO analysis with cutting-edge AI to optimize your web content for search engines. Get actionable insights, AI-powered recommendations, and grammar-safe content improvements.**
 
 [Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [AI Features](#-ai-powered-features) • [Documentation](#-documentation) • [Contributing](#-contributing) • [Support the project](#show-your-support)
