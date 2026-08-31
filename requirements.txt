@@ -11,7 +11,7 @@ rich>=13.7.0,<14.0.0
 
 # AI integrations (optional)
 google-generativeai>=0.3.0,<1.0.0
-openai>=1.0.0,<2.0.0
+openai>=2.52.0,<3.0.0
 
 # Environment management
 python-dotenv>=1.0.0,<2.0.0
