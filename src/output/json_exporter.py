@@ -49,6 +49,12 @@ def export_to_json(report: AnalysisReport, filepath: str):
             'details': report.link_analysis.details,
             'recommendations': report.link_analysis.recommendations
         },
+        'geo_analysis': {
+            'score': report.geo_analysis.score,
+            'status': report.geo_analysis.status,
+            'details': report.geo_analysis.details,
+            'recommendations': report.geo_analysis.recommendations
+        } if getattr(report, 'geo_analysis', None) else None,
         'top_recommendations': report.top_recommendations
     }
     

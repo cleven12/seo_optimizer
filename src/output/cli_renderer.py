@@ -82,6 +82,18 @@ def render_report(report: AnalysisReport, verbose: bool = False):
         console.print(f"   └─ External Links: {external}")
     console.print()
     
+    if hasattr(report, 'geo_analysis') and report.geo_analysis:
+        geo = report.geo_analysis
+        console.print(f"{get_score_icon(geo.score)} [bold]Generative Engine Optimization (GEO): {geo.score}/100[/bold]")
+        if verbose and 'sub_scores' in geo.details:
+            subs = geo.details['sub_scores']
+            console.print(f"   ├─ Citations & Quotes: {subs.get('citations_and_quotations', 0)}/100")
+            console.print(f"   ├─ Statistical Density: {subs.get('statistical_density', 0)}/100")
+            console.print(f"   ├─ Passage Salience (RAG): {subs.get('passage_salience', 0)}/100")
+            console.print(f"   ├─ Structured Data (Schema.org): {subs.get('structured_data', 0)}/100")
+            console.print(f"   └─ Fluency & Readability: {subs.get('readability_fluency', 0)}/100")
+        console.print()
+    
     if report.ai_analysis:
         if report.ai_analysis.status == 'failed':
             console.print("━" * 60, style="blue")

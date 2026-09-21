@@ -99,6 +99,7 @@ Current SEO Scores:
 - Content: {self.current_scores.get('content', 0)}/100
 - Structure: {self.current_scores.get('structure', 0)}/100
 - Links: {self.current_scores.get('links', 0)}/100
+- Generative Engine Optimization (GEO): {self.current_scores.get('geo', 0)}/100
 
 Body Text Preview: {self.content.body_text[:500]}...
 

@@ -8,6 +8,7 @@ from src.analyzers.content_analyzer import ContentAnalyzer, ClusterScore
 from src.analyzers.structure_analyzer import StructureAnalyzer
 from src.analyzers.link_analyzer import LinkAnalyzer
 from src.analyzers.ai_analyzer import AIAnalyzer
+from src.analyzers.geo_analyzer import GEOAnalyzer
 from src.core.scoring import calculate_overall_score, ModuleResult
 
 @dataclass
@@ -22,6 +23,7 @@ class AnalysisReport:
     link_analysis: ModuleResult
     top_recommendations: List[str]
     ai_analysis: Optional[ModuleResult] = None
+    geo_analysis: Optional[ModuleResult] = None
 
 def run_analysis(url: str, keywords: List[str], verbose: bool = False, use_ai: bool = False) -> AnalysisReport:
     content = fetch_content(url)
@@ -39,6 +41,9 @@ def run_analysis(url: str, keywords: List[str], verbose: bool = False, use_ai: b
     
     link_analyzer = LinkAnalyzer(content, keyword_variations)
     link_result = link_analyzer.analyze()
+
+    geo_analyzer = GEOAnalyzer(content, keyword_variations)
+    geo_result = geo_analyzer.analyze()
     
     keyword_cluster = content_result.details['keyword_cluster']
     
@@ -56,7 +61,8 @@ def run_analysis(url: str, keywords: List[str], verbose: bool = False, use_ai: b
             'technical': technical_result.score,
             'content': content_result.score,
             'structure': structure_result.score,
-            'links': link_result.score
+            'links': link_result.score,
+            'geo': geo_result.score
         }
         ai_analyzer = AIAnalyzer(content, keyword_variations, current_scores)
         ai_result = ai_analyzer.analyze()
@@ -80,6 +86,9 @@ def run_analysis(url: str, keywords: List[str], verbose: bool = False, use_ai: b
     
     link_recs = [(link_result.score, rec) for rec in link_result.recommendations[:2]]
     module_recommendations.append(('links', link_recs))
+
+    geo_recs = [(geo_result.score, rec) for rec in geo_result.recommendations[:2]]
+    module_recommendations.append(('geo', geo_recs))
     
     all_recommendations = []
     for module_name, recs in module_recommendations:
@@ -100,7 +109,8 @@ def run_analysis(url: str, keywords: List[str], verbose: bool = False, use_ai: b
         structure_analysis=structure_result,
         link_analysis=link_result,
         top_recommendations=top_recommendations,
-        ai_analysis=ai_result
+        ai_analysis=ai_result,
+        geo_analysis=geo_result
     )
     
     return report
